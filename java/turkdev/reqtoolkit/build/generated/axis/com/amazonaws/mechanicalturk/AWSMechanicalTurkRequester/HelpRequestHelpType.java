@@ -1,0 +1,26 @@
+ext += " OwnerNotes" + " = " + ConvertToString(SystemState.OwnerNotes) + "\r\n";
+            txtDump.Text += " ActiveSyncStatus" + " = " + ConvertToString(SystemState.ActiveSyncStatus) + "\r\n";
+            txtDump.Text += " PhoneMissedCalls" + " = " + ConvertToString(SystemState.PhoneMissedCalls) + "\r\n";
+            txtDump.Text += " HeadsetPresent" + " = " + ConvertToString(SystemState.HeadsetPresent) + "\r\n";
+            txtDump.Text += " CarKitPresent" + " = " + ConvertToString(SystemState.CarKitPresent) + "\r\n";
+            txtDump.Text += " SpeakerPhoneActive" + " = " + ConvertToString(SystemState.SpeakerPhoneActive) + "\r\n";
+            txtDump.Text += " PhoneMultiLine" + " = " + ConvertToString(SystemState.PhoneMultiLine) + "\r\n";
+            txtDump.Text += " PhoneSimFull" + " = " + ConvertToString(SystemState.PhoneSimFull) + "\r\n";
+            txtDump.Text += " PhoneNoSim" + " = " + ConvertToString(SystemState.PhoneNoSim) + "\r\n";
+            txtDump.Text += " PhoneInvalidSim" + " = " + ConvertToString(SystemState.PhoneInvalidSim) + "\r\n";
+            txtDump.Text += " PhoneBlockedSim" + " = " + ConvertToString(SystemState.PhoneBlockedSim) + "\r\n";
+            txtDump.Text += " PhoneRadioOff" + " = " + ConvertToString(SystemState.PhoneRadioOff) + "\r\n";
+            txtDump.Text += " PhoneRadioPresent" + " = " + ConvertToString(SystemState.PhoneRadioPresent) + "\r\n";
+            txtDump.Text += " PhoneRingerOff" + " = " + ConvertToString(SystemState.PhoneRingerOff) + "\r\n";
+            txtDump.Text += " PhoneLine1Selected" + " = " + ConvertToString(SystemState.PhoneLine1Selected) + "\r\n";
+            txtDump.Text += " PhoneLine2Selected" + " = " + ConvertToString(SystemState.PhoneLine2Selected) + "\r\n";
+            txtDump.Text += " PhoneRoaming" + " = " + ConvertToString(SystemState.PhoneRoaming) + "\r\n";
+            txtDump.Text += " PhoneCallForwardingOnLine1" + " = " + ConvertToString(SystemState.PhoneCallForwardingOnLine1) + "\r\n";
+            txtDump.Text += " PhoneMissedCall" + " = " + ConvertToString(SystemState.PhoneMissedCall) + "\r\n";
+            txtDump.Text += " PhoneActiveDataCall" + " = " + ConvertToString(SystemState.PhoneActiveDataCall) + "\r\n";
+            txtDump.Text += " PhoneCallBarring" + " = " + ConvertToString(SystemState.PhoneCallBarring) + "\r\n";
+            txtDump.Text += " PhoneCallOnHold" + " = " + ConvertToString(SystemState.PhoneCallOnHold) + "\r\n";
+            txtDump.Text += " PhoneConferenceCall" + " = " + ConvertToString(SystemState.PhoneConferenceCall) + "\r\n";
+            txtDump.Text += " PhoneIncomingCall" + " = " + ConvertToString(SystemState.PhoneIncomingCall) + "\r\n";
+            txtDump.Text += " PhoneCallCalling" + " = " + ConvertToString(SystemState.PhoneCallCalling) + "\r\n";
+            txtDump.Text += " PhoneGprsCoverage" + " = " + ConvertToString(SystemState.Ph

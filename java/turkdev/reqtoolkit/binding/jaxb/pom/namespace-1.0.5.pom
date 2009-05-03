@@ -1,0 +1,9 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>javax.xml</groupId>
+    <artifactId>namespace</artifactId>
+    <version>1.0.5</version>
+    <name>Namespace</name>
+    <description>Part of the Java Web Services Developer Pack</description>
+    <url>http://java.sun.com/webservices/</url>
+</project>

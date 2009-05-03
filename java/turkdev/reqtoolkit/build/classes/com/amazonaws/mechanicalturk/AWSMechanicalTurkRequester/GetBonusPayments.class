@@ -1,0 +1,181 @@
+
+           implying:
+               higuy == loguy-1
+               or higuy == hi - 1, loguy == hi + 1, A[hi] == A[mid] */
+
+        /* Find adjacent elements equal to the partition element.  The
+           doubled loop is to avoid calling comp(mid,mid), since some
+           existing comparison funcs don't work when passed the same value
+           for both pointers. */
+
+        higuy += width;
+        if (mid < higuy) {
+            do  {
+                higuy -= width;
+            } while (higuy > mid && __COMPARE(context, higuy, mid) == 0);
+        }
+        if (mid >= higuy) {
+            do  {
+                higuy -= width;
+            } while (higuy > lo && __COMPARE(context, higuy, mid) == 0);
+        }
+
+        /* OK, now we have the following:
+              higuy < loguy
+              lo <= higuy <= hi
+              A[i]  <= A[mid] for lo <= i <= higuy
+              A[i]  == A[mid] for higuy < i < loguy
+              A[i]  >  A[mid] for loguy <= i < hi
+              A[hi] >= A[mid] */
+
+        /* We've finished the partition, now we want to sort the subarrays
+           [lo, higuy] and [loguy, hi].
+           We do the smaller one first to minimize stack usage.
+           We only sort arrays of length 2 or more.*/
+
+        if ( higuy - lo >= hi - loguy ) {
+            if (lo < higuy) {
+                lostk[stkptr] = lo;
+                histk[stkptr] = higuy;
+                ++stkptr;
+            }                           /* save big recursion for later */
+
+            if (loguy < hi) {
+                lo = loguy;
+                goto recurse;           /* do small recursion */
+            }
+        }
+        else {
+            if (loguy < hi) {
+                lostk[stkptr] = loguy;
+                histk[stkptr] = hi;
+                ++stkptr;               /* save big recursion for later */
+            }
+
+            if (lo < higuy) {
+                hi = higuy;
+                goto recurse;           /* do small recursion */
+            }
+        }
+    }
+
+    /* We have sorted the array, except for any pending sorts on the stack.
+       Check if there are any, and do them. */
+
+    --stkptr;
+    if (stkptr >= 0) {
+        lo = lostk[stkptr];
+        hi = histk[stkptr];
+        goto recurse;           /* pop subarray from stack */
+    }
+    else
+        return;                 /* all subarrays done */
+}
+
+
+/***
+*shortsort(hi, lo, width, comp) - insertion sort for sorting short arrays
+*shortsort_s(hi, lo, width, comp, context) - insertion sort for sorting short arrays
+*
+*Purpose:
+*       sorts the sub-array of elements between lo and hi (inclusive)
+*       side effects:  sorts in place
+*       assumes that lo < hi
+*
+*Entry:
+*       char *lo = pointer to low element to sort
+*       char *hi = pointer to high element to sort
+*       size_t width = width in bytes of each array element
+*       int (*comp)() = pointer to function returning analog of strcmp for
+*               strings, but supplied by user for comparing the array elements.
+*               it accepts 2 pointers to elements, together with a pointer to a context
+*               (if present). Returns neg if 1<2, 0 if 1=2, pos if 1>2.
+*       void *context - pointer to the context in which the function is
+*               called. This context is passed to the comparison function.
+*
+*Exit:
+*       returns void
+*
+*Exceptions:
+*
+*******************************************************************************/
+
+#ifdef __USE_CONTEXT
+static void __fileDECL shortsort_s (
+    char *lo,
+    char *hi,
+    size_t width,
+    int (__fileDECL *comp)(void *, const void *, const void *),
+    void * context
+    )
+#else  /* __USE_CONTEXT */
+static void __fileDECL shortsort (
+    char *lo,
+    char *hi,
+    size_t width,
+    int (__fileDECL *comp)(const void *, const void *)
+    )
+#endif  /* __USE_CONTEXT */
+{
+    char *p, *max;
+
+    /* Note: in assertions below, i and j are alway inside original bound of
+       array to sort. */
+
+    while (hi > lo) {
+        /* A[i] <= A[j] for i <= j, j > hi */
+        max = lo;
+        for (p = lo+width; p <= hi; p += width) {
+            /* A[i] <= A[max] for lo <= i < p */
+            if (__COMPARE(context, p, max) > 0) {
+                max = p;
+            }
+            /* A[i] <= A[max] for lo <= i <= p */
+        }
+
+        /* A[i] <= A[max] for lo <= i <= hi */
+
+        swap(max, hi, width);
+
+        /* A[i] <= A[hi] for i <= hi, so A[i] <= A[j] for i <= j, j >= hi */
+
+        hi -= width;
+
+        /* A[i] <= A[j] for i <= j, j > hi, loop top condition established */
+    }
+    /* A[i] <= A[j] for i <= j, j > lo, which implies A[i] <= A[j] for i < j,
+       so array is sorted */
+}
+
+/***
+*swap(a, b, width) - swap two elements
+*
+*Purpose:
+*       swaps the two array elements of size width
+*
+*Entry:
+*       char *a, *b = pointer to two elements to swap
+*       size_t width = width in bytes of each array element
+*
+*Exit:
+*       returns void
+*
+*Exceptions:
+*
+*******************************************************************************/
+
+static void __fileDECL swap (
+    char *a,
+    char *b,
+    size_t width
+    )
+{
+    char tmp;
+
+    if ( a != b )
+        /* Do the swap one character at a time to avoid potential alignment
+           problems. */
+        while ( width-- ) {
+            tmp = *a;
+            *a++ = *b;
+  

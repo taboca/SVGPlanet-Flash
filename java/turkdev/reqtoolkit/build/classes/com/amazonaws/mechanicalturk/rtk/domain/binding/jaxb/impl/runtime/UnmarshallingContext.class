@@ -1,0 +1,61 @@
+//
+// Copyright (c) Microsoft Corporation.  All rights reserved.
+//
+//
+// Use of this source code is subject to the terms of the Microsoft end-user
+// license agreement (EULA) under which you licensed this SOFTWARE PRODUCT.
+// If you did not accept the terms of the EULA, you are not authorized to use
+// this source code. For a copy of the EULA, please see the LICENSE.RTF on your
+// install media.
+//
+/*++
+
+
+Module Name:
+
+    datalog.h
+
+Abstract:
+
+    Data structures, defines and function prototypes for event logging
+    posted by zero config.
+
+Environment:
+
+    
+
+--*/
+
+#ifndef __WZCMSQ_H__
+#define __WZCMSQ_H__
+
+
+//
+//  Number that we increase everytime the LOG_ENTRY is
+//  modified.   This is to make sure that the client is up to 
+//  date with the lates struct entries..
+//
+
+#define CURRENT_LOGGING_VERSION     4
+
+//
+//  Recommended maximum messages per queue..
+//
+
+#define DEFAULT_MAX_MESSAGES        16
+
+
+//
+//  Queue name
+//
+
+#define WZC_MSGQUEUE_NAME       TEXT("WzcEventLoggingQueue")
+
+typedef struct 
+{  
+    DWORD       dwLogId;                    //  WZC_XXX defined below..
+    DWORD       dwCurrentLogVersion;        //  To make we are using the correct client..
+    UCHAR       pucSSID[33];                //  SSID is 32 byte string, add 1 byte for NULL termination.
+    UCHAR       pucBSSID[6];                //  MAC address of the AP we are associated with. 
+    DWORD       dwArg;                      //  Misc..
+    DWORD       dwInfrastructureMode;       

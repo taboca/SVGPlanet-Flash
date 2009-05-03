@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsl:stylesheet version="1.0"  xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+<xsl:output method="xml" indent="yes"/>
+  
+  <xsl:template match="/">
+    <items>
+      <xsl:apply-templates select="keys/list/image" />
+    </items>
+  </xsl:template>
+
+  <xsl:template match="keys/list/image"><item>
+    <xsl:attribute name="refimage">
+      <xsl:value-of select="@href"  disable-output-escaping="yes" />
+    </xsl:attribute><![CDATA[
+ <ExternalQuestion xmlns="http://mechanicalturk.amazonaws.com/AWSMechanicalTurkDataSchemas/2006-07-14/ExternalQuestion.xsd">
+  <ExternalURL>http://ccfotos.taboca.com.br/dynmturk/?image=]]><xsl:value-of select="@href"  disable-output-escaping="yes" /><![CDATA[</ExternalURL>
+  <FrameHeight>600</FrameHeight>
+</ExternalQuestion>
+]]></item>
+
+  </xsl:template>
+
+</xsl:stylesheet>

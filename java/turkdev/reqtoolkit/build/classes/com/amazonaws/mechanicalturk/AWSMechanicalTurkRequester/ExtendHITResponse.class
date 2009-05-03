@@ -1,0 +1,119 @@
+/***
+*searchenv.c - find a file using paths from an environment variable
+*
+*       Copyright (c) Microsoft Corporation. All rights reserved.
+*
+*Purpose:
+*       to search a set a directories specified by an environment variable
+*       for a specified file name.  If found the full path name is returned.
+*
+*******************************************************************************/
+
+#include <cruntime.h>
+#include <direct.h>
+#include <stdlib.h>
+#include <string.h>
+#include <io.h>
+#include <internal.h>
+#include <tchar.h>
+#include <dbgint.h>
+
+/***
+*_searchenv_s - search for file along paths from environment variable
+*
+*Purpose:
+*       to search for a specified file in the directory(ies) specified by
+*       a given environment variable, and, if found, to return the full
+*       path name of the file.  The file is first looked for in the current
+*       working directory, prior to looking in the paths specified by env_var.
+*
+*Entry:
+*       const _TSCHAR * fname - name of file to search for
+*       const _TSCHAR * env_var - name of environment variable to use for paths
+*       _TSCHAR * path - pointer to storage for the constructed path name
+*       size_t sz - the size of the path buffer
+*
+*Exit:
+*       returns 0 on success & sets pfile
+*       returns errno_t on failure.
+*       The path parameter is filled with the fullpath of found file on success
+*
+*Exceptions:
+*
+*******************************************************************************/
+
+errno_t __cdecl _tsearchenv_s (
+        const _TSCHAR *fname,
+        const _TSCHAR *env_var,
+        _TSCHAR *path,
+        size_t sz
+        )
+{
+        register _TSCHAR *p;
+        register int c;
+        _TSCHAR *envbuf = NULL;
+        _TSCHAR *env_p, *save_env_p;
+        size_t len;
+        _TSCHAR pathbuf[_MAX_PATH + 4];
+        _TSCHAR * pbuf = NULL;
+        size_t fnamelen, buflen;
+        errno_t save_errno;
+        int ret;
+        errno_t retvalue = 0;
+
+        _VALIDATE_RETURN_ERRCODE( (path != NULL), EINVAL);
+        _VALIDATE_RETURN_ERRCODE( (sz > 0), EINVAL);
+        if (fname == NULL)
+        {
+            *path = _T('\0');
+            _VALIDATE_RETURN_ERRCODE( (fname != NULL), EINVAL);
+        }
+
+        /* special case: fname is an empty string: just return an empty path, errno is set to ENOENT */
+        if (fname[0] == 0)
+        {
+            *path = _T('\0');
+            errno = ENOENT;
+            retvalue = errno;
+            goto cleanup;
+        }
+
+        save_errno = errno;
+        ret = _taccess_s(fname, 0);
+        errno = save_errno;
+
+        if (ret == 0 ) {
+
+            /* exists, convert it to a fully qualified pathname and
+               return */
+            if ( _tfullpath(path, fname, sz) == NULL )
+            {
+                *path = _T('\0'); /* fullpath will set errno in this case */
+                retvalue = errno;
+                goto cleanup;
+            }
+
+            retvalue = 0;
+            goto cleanup;
+        }
+
+        if (_ERRCHECK_EINVAL(_tdupenv_s_crt(&envbuf, NULL, env_var)) != 0 || envbuf == NULL) {
+            /* no such environment var. and not in cwd, so return empty
+               string, set errno to ENOENT */
+            *path = _T('\0');
+            errno = ENOENT;
+            retvalue = errno;
+            goto cleanup;
+        }
+
+        env_p = envbuf;
+        fnamelen = _tcslen(fname);
+        pbuf = pathbuf;
+        buflen = _countof(pathbuf);
+
+        if(fnamelen >= buflen)
+        {
+            /* +2 for the trailing '\' we may need to add & the '\0' */
+            buflen = _tcslen(env_p) + fnamelen + 2;
+            pbuf = (_TSCHAR *)_calloc_crt( buflen, sizeof(_TSCHAR));
+       

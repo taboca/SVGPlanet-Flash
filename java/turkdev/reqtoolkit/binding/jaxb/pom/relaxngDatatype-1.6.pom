@@ -1,0 +1,9 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.relaxng</groupId>
+    <artifactId>relaxngDatatype</artifactId>
+    <version>1.6</version>
+    <name>XSD libraries</name>
+    <description>Part of the Java Web Services Developer Pack</description>
+    <url>http://java.sun.com/webservices/</url>
+</project>

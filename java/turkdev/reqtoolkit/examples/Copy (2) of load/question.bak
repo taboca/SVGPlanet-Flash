@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<QuestionForm xmlns="http://mechanicalturk.amazonaws.com/AWSMechanicalTurkDataSchemas/2005-10-01/QuestionForm.xsd">
+
+	<Question>
+		<QuestionIdentifier>Describe the image</QuestionIdentifier>
+		<QuestionContent>
+			<Title>Describe the subject, label the following image</Title>
+
+			<Text>Please label the image as you like, good English wording. Not necessary to be huge paragraphs. You can describe the subject of the picture or its enviroment if you think the environment can be considered the focus important part. </Text>
+
+			
+<Binary>
+  <MimeType>
+    <Type>image</Type>
+    <SubType>jpg</SubType>
+  </MimeType>
+
+		#set ($counter = 1)
+		#foreach ( $reviewValue in $review.values)
+		     #if ( $counter == 2)
+  				<DataURL>$reviewValue</DataURL>
+		     #end
+		     #set ( $counter = $counter+1)
+		#end
+
+  <AltText>Describe the image.</AltText>
+</Binary>
+
+		</QuestionContent>
+
+		<AnswerSpecification>
+<FreeTextAnswer>
+  <Constraints>
+    <Length minLength="15" maxLength="180" />
+  </Constraints>
+  <DefaultText>C1</DefaultText>
+</FreeTextAnswer>
+		</AnswerSpecification>
+
+
+	</Question>
+
+</QuestionForm>

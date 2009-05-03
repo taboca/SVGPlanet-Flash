@@ -1,0 +1,119 @@
+/***
+*qsort.c - quicksort algorithm; qsort() library function for sorting arrays
+*
+*   Copyright (c) Microsoft Corporation. All rights reserved.
+*
+*Purpose:
+*   To implement the qsort() routine for sorting arrays.
+*
+*******************************************************************************/
+
+#include <stdlib.h>
+#include <search.h>
+#include <internal.h>
+
+/* Always compile this module for speed, not size */
+#pragma optimize("t", on)
+
+#if defined (_M_CEE)
+#define __fileDECL  __clrcall
+#else  /* defined (_M_CEE) */
+#define __fileDECL  __cdecl
+#endif  /* defined (_M_CEE) */
+
+/* when building Managed Run time dll, we should be defining __cdecl
+ * to __clrcall. Also note that when compiling for MRT, we are compiling
+ * as C++ file.
+ */
+
+/* prototypes for local routines */
+#ifdef __USE_CONTEXT
+static void __fileDECL shortsort_s(char *lo, char *hi, size_t width,
+                int (__fileDECL *comp)(void *, const void *, const void *), void *);
+#define swap swap_c
+#else  /* __USE_CONTEXT */
+static void __fileDECL shortsort(char *lo, char *hi, size_t width,
+                int (__fileDECL *comp)(const void *, const void *));
+#endif  /* __USE_CONTEXT */
+
+static void __fileDECL swap(char *p, char *q, size_t width);
+
+/* this parameter defines the cutoff between using quick sort and
+   insertion sort for arrays; arrays with lengths shorter or equal to the
+   below value use insertion sort */
+
+#define CUTOFF 8            /* testing shows that this is good value */
+
+#define STKSIZ (8*sizeof(void*) - 2)
+
+/***
+*qsort(base, num, wid, comp) - quicksort function for sorting arrays
+*
+*Purpose:
+*   quicksort the array of elements
+*   side effects:  sorts in place
+*   maximum array size is number of elements times size of elements,
+*   but is limited by the virtual address space of the processor
+*
+*Entry:
+*   char *base = pointer to base of array
+*   size_t num  = number of elements in the array
+*   size_t width = width in bytes of each array element
+*   int (*comp)() = pointer to function returning analog of strcmp for
+*           strings, but supplied by user for comparing the array elements.
+*           it accepts 2 pointers to elements.
+*           Returns neg if 1<2, 0 if 1=2, pos if 1>2.
+*
+*Exit:
+*   returns void
+*
+*Exceptions:
+*   Input parameters are validated. Refer to the validation section of the function.
+*
+*******************************************************************************/
+
+#ifdef __USE_CONTEXT
+#define __COMPARE(context, p1, p2) comp(context, p1, p2)
+#define __SHORTSORT(lo, hi, width, comp, context) shortsort_s(lo, hi, width, comp, context);
+#else  /* __USE_CONTEXT */
+#define __COMPARE(context, p1, p2) comp(p1, p2)
+#define __SHORTSORT(lo, hi, width, comp, context) shortsort(lo, hi, width, comp);
+#endif  /* __USE_CONTEXT */
+
+#ifdef __USE_CONTEXT
+void __fileDECL qsort_s (
+    void *base,
+    size_t num,
+    size_t width,
+    int (__fileDECL *comp)(void *, const void *, const void *),
+    void *context
+    )
+#else  /* __USE_CONTEXT */
+void __fileDECL qsort (
+    void *base,
+    size_t num,
+    size_t width,
+    int (__fileDECL *comp)(const void *, const void *)
+    )
+#endif  /* __USE_CONTEXT */
+{
+    /* Note: the number of stack entries required is no more than
+       1 + log2(num), so 30 is sufficient for any array */
+    char *lo, *hi;              /* ends of sub-array currently sorting */
+    char *mid;                  /* points to middle of subarray */
+    char *loguy, *higuy;        /* traveling pointers for partition step */
+    size_t size;                /* size of the sub-array */
+    char *lostk[STKSIZ], *histk[STKSIZ];
+    int stkptr;                 /* stack for saving sub-array to be processed */
+
+    /* validation section */
+    _VALIDATE_RETURN_VOID(base != NULL || num == 0, EINVAL);
+    _VALIDATE_RETURN_VOID(width > 0, EINVAL);
+    _VALIDATE_RETURN_VOID(comp != NULL, EINVAL);
+
+    if (num < 2)
+        return;                 /* nothing to do */
+
+    stkptr = 0;                 /* initialize stack */
+
+    lo = (char *)bas

@@ -1,0 +1,57 @@
+ix);
+
+	name = getString("TabbedPaneDemo.ewan");
+	pix = new JLabel(createImageIcon("tabbedpane/ewan.jpg", name));
+	tabbedpane.add(name, pix);
+
+	name = getString("TabbedPaneDemo.hania");
+	pix = new JLabel(createImageIcon("tabbedpane/hania.jpg", name));
+	tabbedpane.add(name, pix);
+
+	name = getString("TabbedPaneDemo.bounce");
+	spin = new HeadSpin();
+	tabbedpane.add(name, spin);
+	
+	tabbedpane.getModel().addChangeListener(
+	   new ChangeListener() {
+	      public void stateChanged(ChangeEvent e) {
+		  SingleSelectionModel model = (SingleSelectionModel) e.getSource();
+		  if(model.getSelectedIndex() == tabbedpane.getTabCount()-1) {
+		      spin.go();
+		  }
+	      }
+	   }
+	);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+	if(e.getSource() == top) {
+	    tabbedpane.setTabPlacement(JTabbedPane.TOP);
+	} else if(e.getSource() == left) {
+	    tabbedpane.setTabPlacement(JTabbedPane.LEFT);
+	} else if(e.getSource() == bottom) {
+	    tabbedpane.setTabPlacement(JTabbedPane.BOTTOM);
+	} else if(e.getSource() == right) {
+	    tabbedpane.setTabPlacement(JTabbedPane.RIGHT);
+	}
+    }
+
+    class HeadSpin extends JComponent implements ActionListener {
+	javax.swing.Timer animator;
+	
+	ImageIcon icon[] = new ImageIcon[6];
+
+	int tmpScale;
+
+	final static int numImages = 6;
+
+	double x[] = new double[numImages];
+	double y[] = new double[numImages];
+
+	int xh[] = new int[numImages];
+	int yh[] = new int[numImages];
+
+	double scale[] = new double[numImages];
+
+	public HeadSpin() {
+	   

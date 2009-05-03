@@ -1,0 +1,39 @@
+              | fieldAttr 'private' 
+                        | fieldAttr 'family' 
+                        | fieldAttr 'initonly' 
+                        | fieldAttr 'rtspecialname'  /**/
+                        | fieldAttr 'specialname' 
+						/* commented out because PInvoke for fields is not supported by EE
+                        | fieldAttr 'pinvokeimpl' '(' compQstring 'as' compQstring pinvAttr ')' 
+                        | fieldAttr 'pinvokeimpl' '(' compQstring  pinvAttr ')' 
+                        | fieldAttr 'pinvokeimpl' '(' pinvAttr ')' 
+						*/
+                        | fieldAttr 'marshal' '(' nativeType ')' 
+                        | fieldAttr 'assembly' 
+                        | fieldAttr 'famandassem' 
+                        | fieldAttr 'famorassem' 
+                        | fieldAttr 'privatescope' 
+                        | fieldAttr 'literal' 
+                        | fieldAttr 'notserialized' 
+                        ;
+
+implAttr                : /* EMPTY */ 
+                        | implAttr 'native' 
+                        | implAttr 'cil' 
+                        | implAttr 'optil' 
+                        | implAttr 'managed' 
+                        | implAttr 'unmanaged' 
+                        | implAttr 'forwardref' 
+                        | implAttr 'preservesig' 
+                        | implAttr 'runtime' 
+                        | implAttr 'internalcall' 
+                        | implAttr 'synchronized' 
+                        | implAttr 'noinlining' 
+                        ;
+
+localsHead              : '.locals' 
+                        ;
+
+
+methodDecl              : '.emitbyte' int32 
+ 

@@ -1,0 +1,539 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Loading HITs</title>
+<style type="text/css">
+
+body {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  color: #000;
+  background-color: #fff;
+}
+
+body.toc {
+  margin: 0;
+  padding: 0;
+}
+
+a         { color: #036; text-decoration: underline; }
+a:visited { color: #666;  text-decoration: underline; }
+a:hover   { color: #c60; text-decoration: none; }
+
+h1 {
+  font-size: 16px;
+  font-weight: bold;
+  color: #c60;
+  margin-bottom: 25px;
+  padding-bottom: 5px;
+  border-bottom-width: 1px;
+  border-bottom-style: dashed;
+  border-bottom-color: #95a8a6;
+}
+
+h2 {
+  font-size: 14px;
+  font-weight: bold;
+  color: #c60;
+  margin-top: 25px;
+  padding-bottom: 10px;
+}
+
+h3 {
+  font-size: 12px;
+  font-weight: bold;
+  color: #c60;
+  margin-top: 25px;
+}
+
+h4 {
+  font-size: 12px;
+  font-weight: normal;
+  color: #c60;
+  margin-top: 25px;
+}
+
+div.example {
+  border: 1px solid #999;
+  padding: 10px;
+  margin: 10px 0 10px 0;
+}
+
+.example-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #c60;
+  margin: 0 0 10px 0;
+}
+
+pre.programlisting {
+  font-family: "Courier New", Courier, mono;
+  font-size: 12px;
+  margin: 0 0 20px 0;
+}
+
+div.example pre.programlisting {
+  color: #000066;
+  background-color: #eff7ff;
+  padding: 10px;
+  border: 1px dashed #333;
+  margin-bottom: 0;
+}
+
+ul {
+	font-size: 12px;
+	list-style-position: outside;
+  list-style-type: circle;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+ul.nobullet {
+  list-style-type: none;
+}
+
+ul.nobullet * p {
+  margin: 0;
+}
+
+ul.noindent li {
+  margin-left: -25px;
+}
+
+ul.noindent * p{
+  margin: 0;
+}
+
+ol * ol {
+  list-style-type: lower-alpha;
+}
+
+#header {
+  font-size: 10px;
+  color: #999;
+  border-bottom: 1px dotted #999;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#footer {
+  font-size: 10px;
+  color: #999;
+  border-top: 1px dotted #999;
+  text-align: center;
+  margin-top: 20px;
+}
+
+dt {
+  font-weight: bold;
+  font-style: italic;
+}
+
+table {
+  border-top: 1px solid #999;
+  border-left: 1px solid #999;
+}
+
+p.table-title {
+  font-weight: bold;
+  margin: 10px 0 5px 5px;
+}
+
+td, th {
+  font-size: 12px;
+  padding: 5px 10px 5px 10px;
+  border-bottom: 1px solid #999;
+  border-right: 1px solid #999;
+  vertical-align: top;
+}
+
+th {
+  background-color: #999;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 10px;
+  text-align: left;
+}
+
+tr td {
+  background-color: #fff;
+}
+
+tr.odd td {
+  background-color: #f4f4f4;
+}
+
+td p:first-child {
+  margin-top: 0;
+}
+
+td pre.programlisting {
+  margin-bottom: 0;
+}
+
+kbd {
+  font-family: "Courier New", Courier, mono;
+  font-size: 12px;
+  font-weight: bold;
+  color: #040;
+}
+
+.replaceable {
+  font-weight: bold;
+  color: #f00;
+}
+
+code.markup {
+  font-family: "Courier New", Courier, mono;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+code.sgmltag {
+  font-family: "Courier New", Courier, mono;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+code.filename {
+  font-family: "Courier New", Courier, mono;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+code.errorname {
+  font-family: "Courier New", Courier, mono;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+div.note,
+div.tip,
+div.important,
+div.warning,
+div.caution {
+  margin: 10px;
+  padding: 10px;
+  background-color: #eee;
+}
+
+div.note p,
+div.tip p,
+div.caution p {
+  margin-bottom: 0;
+}
+
+p.admonition-title {
+  margin: 0;
+}
+
+div.note pre.programlisting,
+div.tip pre.programlisting,
+div.caution pre.programlisting {
+  margin: 10px 0 0 0;
+}
+
+strong.caution {
+  color: #f00;
+}
+
+strong.required,
+strong.optional,
+strong.sometimes {
+  text-transform: uppercase;
+  font-size: 10px;
+}
+
+strong.required {
+  color: #c60;
+}
+
+strong.optional {
+  color: #999;
+}
+
+strong.sometimes {
+  color: #036;
+}
+
+p.blockquote {
+  margin: 0 20px 0 20px;
+}
+
+div.requestparams,
+div.samplerequest {
+  border: 1px solid #999;
+  padding: 0;
+  margin-bottom: 10px;
+}
+
+div.requestparams h2,
+div.samplerequest h2 {
+  margin: 0;
+  padding: 10px;
+}
+
+div.samplerequest div.example {
+  margin: 0 -1px -1px -1px;
+}
+
+div.requestparams h2 {
+  border-bottom: 1px solid #999;
+}
+
+div.requestparams p,
+div.requestparams ul {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+div.requestparams table {
+  margin: 0 -1px -1px -1px;
+}
+
+div.tableheader {
+  text-transform: uppercase;
+  font-size: 10px;
+  font-weight: bold;
+  color: #999;
+  text-align: center;
+  margin: 15px 0 15px 0;
+}
+
+div.breadcrumb {
+  font-size: 10px;
+  color: #999;
+  padding-bottom: 10px;
+  text-align: right;
+}
+
+.navcontainer { width: 100%; }
+
+.navcontainer a {
+  display: block;
+  padding: 5px;
+  background-color: #fff;
+}
+
+.navcontainer a:link {
+  color: #036;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navcontainer  a:visited {
+  color: #036;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navcontainer a:hover {
+  background-color: #fff;
+  color: #c60;
+  padding: 5px;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.navdiv {
+  font-size: 10px;
+  line-height: 12px;
+  color: #036;
+  list-style-position: outside;
+  list-style-type: none;
+  margin-bottom: 10px;
+}
+
+a.breadcrumb {
+  font-size: 10px;
+}
+
+.navdiv a:link { text-decoration: none; }
+
+.navdiv a:hover {
+  color: #000;
+}
+
+table.navcontainer,
+table.topnavcontainer {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+table.navcontainer * td,
+table.topnavcontainer * td,
+table.navcontainer * table {
+  padding: 0;
+  border: 0;
+}
+
+p.figure-caption {
+  font-style: italic;
+  font-weight: bold;
+  font-size: 10px;
+}
+
+img.figure {
+  border: 1px solid #999;
+}
+
+img.inline {
+  border: 0;
+}
+.collapse {font-size: 9px}
+    </style>
+<script language="javascript">
+				function shoh (id, a){
+					if(document.getElementById(id).style.display =='none'){
+						document.getElementById(id).style.display ='inline';
+						document.getElementById(a).innerHTML = "Hide";
+					}
+					else {
+						document.getElementById(id).style.display = 'none';
+						document.getElementById(a).innerHTML = "Show";
+					}
+				}
+				</script>
+</head>
+<body>
+  
+<h1 id="top">Loading HITs</h1>
+  
+<p>
+    A typical HIT load process creates HITs by bundling the
+    application's data into <em>work items</em>, one for
+    each HIT to be created, using a <em>work item
+    factory</em>.  A <em>HIT constructor</em>
+    formats the work item into a question to be asked to a Mechanical
+    Turk Worker using a <em>question factory</em>.  The
+    constructor adds HIT metadata, such as a deadline, an expiration
+    date, and a reward, and submits the HIT to the service.
+  </p>
+  
+<div class="figure">
+<img class="figure" src="images/overview_loadprocess.png" width="504" height="216" alt="A HIT Load Process"></div>
+
+  
+    
+<h2>The Work Item Factory</h2>
+    
+<p>
+      A work item factory provides a method to return a work item.
+    </p>
+    
+<p>
+      The <code>WorkItemFactory</code> interface requires one method,
+      <code>getNextWorkItem()</code>, which is to return an object of
+      a class that implements the <code>WorkItem</code> interface.
+    </p>
+    
+<p>
+      The <code>WorkItem</code> interface requires three methods:
+      <code>getId()</code> is to return an identifier for the work
+      item, which the HIT constructor can use as the HIT's "Requester
+      annotation."  <code>notifyOnException(...)</code> and
+      <code>notifyOnLoad(...)</code> are hooks the HIT constructor
+      calls in the event of an exception, or on successful creation of
+      the HIT, respectively, so the application can record success or
+      failure, associate the Mechanical Turk HIT ID with the work
+      item, and affect future calls to the work item factory or runs
+      of the load process.
+    </p>
+    
+<p>
+      The Toolkit includes implementations for making work items from
+      a file.  The <code>FileWorkItemFactory</code> class processes a
+      data file with one work item's worth of data on each line, and
+      returns a work item of the class (or subclass of the class)
+      <code>FileLineWorkItem</code>.  <code>FileWorkItemFactory</code>
+      is configured with the filename, the class of work item to
+      create, and any configuration to be passed to the
+      <code>WorkItem</code> object.
+    </p>
+    
+<p>
+      The <code>FileLineWorkItem</code> class is a
+      <code>WorkItem</code> implementation whose ID is the line
+      number, and whose data is just a <code>String</code> containing
+      the line from the file.  Two additional implementations, the
+      <code>CSVWorkItem</code> class and the <code>XMLWorkItem</code>
+      class, are provided.  The first parses the line as
+      comma-separated values, and can be configured to take a value
+      from a column as the work item's ID.  An
+      <code>XMLWorkItem</code> can be configured with an XPath
+      expression to retrieve the <code>WorkItem</code>'s ID.
+    </p>
+    
+<p>
+      
+<code>FileLineWorkItem</code> is a sub-class of
+      <code>LoggingWorkItem</code>, an abstract class that implements
+      the <code>WorkItem</code> notification hooks with logging
+      actions.
+    </p>
+    
+<p>
+      Interfaces and implementations for work item factories and work items are in the <code>com.amazonaws.mechanicalturk.rtk.process.load.workitem</code> package.
+    </p>
+  
+
+  
+    
+<h2>The HIT Constructor</h2>
+    
+<p>
+      A HIT constructor takes a work item, and returns a HIT suitable
+      for passing to the Mechanical Turk web service.
+    </p>
+    
+<p>
+      The <code>HITConstructor</code> interface requires one method,
+      <code>constructHIT(...)</code>, which is to take an object of a
+      class that implements the <code>WorkItem</code> interface, and
+      return an object of the class <code>HIT</code>.
+    </p>
+    
+<p>
+      The <code>SimpleHITConstructor</code> implementation gets all of
+      the HIT's metadata (title, description, reward, deadline,
+      expiration, Qualification requirements, and so forth) from
+      configuration, sets the HIT's Requester annotation using the
+      work item's ID, and uses an implementation of the
+      <code>QuestionFactory</code> interface (specified in the HIT
+      constructor configuration) to format the work item data as the
+      HIT's question.
+    </p>
+    
+<p>
+      The <code>QuestionFactory</code> interface requires one method,
+      <code>formatQuestion(...)</code>, which is to take an object of
+      a class that implements the <code>WorkItem</code> interface, and
+      return a <code>String</code> of the question XML data.  The
+      question XML data must validate against the question form
+      schema, as described in the <em>Mechanical Turk Developer
+      Guide</em>.
+    </p>
+    
+<p>
+      The Toolkit includes two implementations of question factories:
+      <code>VelocityQuestionFactory</code> produces the question XML
+      data using the Velocity template engine, setting the
+      <code>WorkItem</code> object as a value in the Velocity template
+      context.  <code>XSLTQuestionFactory</code> applies an XSL
+      transform (specified in configuration) to an
+      <code>XMLWorkItem</code> to produce the question XML data.
+    </p>
+    
+<p>
+      Interfaces and implementations for HIT constructors and question
+      factories are in the
+      <code>com.amazonaws.mechanicalturk.rtk.process.load.construction</code>
+      package.  The <code>HIT</code> class is in the
+      <code>com.amazonaws.mechanicalturk.rtk.domain</code> package.
+    </p>
+  
+
+
+</body>
+</html>

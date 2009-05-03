@@ -1,0 +1,110 @@
+/* 
+ * Copyright (C) 2007 Marcio dos Santos Galli, Taboca Inc 
+ * All Rights Reserved
+ * Contact marciog@taboca.com 
+ */
+
+
+/* Global Variables / Account */
+
+var turk_access_key = "0DGQMYR21FJAPQK95T02";
+var turk_access_secret = "Lc0KWlIp+Vi+zmBFbVNGRKrQLgMdEPds6JhL2o6j";
+
+function mturk_prepareHits() {
+
+         var testLoad=new bmProcessor();
+         testLoad.xmlSet(document.getElementById("hitskey").value);
+	   testLoad.xslSet(document.getElementById("hitstemplate").value);
+	   testLoad.callBack = mturk_prepareHits_callback;
+         testLoad.setTargetDocument(document.getElementById("hitsBrowser").contentDocument);
+         testLoad.setTargetElement(document.getElementById("hitsBrowser").contentDocument.getElementById("container"));
+         testLoad.run();
+
+}
+
+function mturk_prepareHits_callback() {
+
+  alert("completed");
+
+}
+
+function mturk_loadHitKeys() {
+
+	document.getElementById("keysBrowser").setAttribute("src",document.getElementById("hitskey").value);
+
+}
+
+
+function mturk_createHits() {
+
+
+	var par_service   = "AWSMechanicalTurkRequester";
+	var par_operation = "CreateHIT";
+	var par_utcFull   = encodeURIComponent( mturk_getUTCFull() );
+	var par_signature = mturk_getEncodedSignature(service,operation);
+	var par_uri       = "http://mechanicalturk.amazonaws.com/onca/xml";
+	var par_others    = "";
+
+	var req_full = par_uri + "?Service=" + par_service + "&Operation=" + par_operation + "&AWSAccessKeyId=" + turk_access_key + "&Timestamp="+par_utcFull + "&Signature="+par_signature+ par_others; 
+
+}
+
+function mturk_getEncodedSignature(service,operation) {
+
+	var defaultService = "AWSMechanicalTurkRequester"; // default is the amazon mturk... 
+
+	if(service) {
+		defaultService = service;
+	}
+
+	var myCryptor = Components.classes["@mozilla.org/security/hash;1"].createInstance(Components.interfaces.nsICryptoHash);
+	
+	myCryptor.init(myCryptor.SHA1); 
+
+	var utcFull = mturk_getUTCFull();
+	var comboThree = defaultService + operation + utcFull;
+	var stringToPass = comboThree;
+	var req_signature = (b64_hmac_sha1(turk_access_secret,stringToPass));
+
+	var resultSignature = encodeURIComponent(req_signature);
+
+	return resultSignature+"%3D"; // WTF is this 3d? 
+
+}
+
+function mturk_getUTCFull() {
+	d = new Date();
+	// UTC format is 2000-01-16T12:00:00Z
+	utcYear    = d.getUTCFullYear();
+	utcMonth   = d.getUTCMonth();
+	utcDate    = d.getUTCDate();
+	utcHour    = d.getUTCHours();
+	utcMinutes = d.getUTCMinutes();
+	utcSeconds = d.getUTCSeconds();
+	utcMonth++;
+	// removed the "Z";
+	if(utcDate.toString().length<2) {
+		// we add one ore zero..
+		utcDate="0"+utcDate;
+	}
+	if(utcMonth.toString().length<2) {
+		// we add one ore zero..
+		utcMonth="0"+utcMonth;
+	}
+	if(utcHour.toString().length<2) {
+		// we add one ore zero..
+		utcHour="0"+utcHour;
+	}
+	if(utcMinutes.toString().length<2) {
+		// we add one ore zero..
+		utcMinutes ="0"+utcMinutes ;
+	}
+	if(utcSeconds.toString().length<2) {
+		// we add one ore zero..
+		utcSeconds ="0"+utcSeconds ;
+	}
+	utcFull = (utcYear+"-"+utcMonth+"-"+utcDate+"T"+utcHour+":"+utcMinutes+":"+utcSeconds);
+
+	utcFull+=".000Z";
+	return utcFull;
+}

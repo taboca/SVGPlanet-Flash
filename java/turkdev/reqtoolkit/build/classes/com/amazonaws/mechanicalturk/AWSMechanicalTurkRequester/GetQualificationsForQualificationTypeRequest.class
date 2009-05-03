@@ -1,0 +1,153 @@
+/***
+*popen.c - initiate a pipe and a child command
+*
+*       Copyright (c) Microsoft Corporation. All rights reserved.
+*
+*Purpose:
+*       Defines _popen() and _pclose().
+*
+*******************************************************************************/
+
+
+#include <cruntime.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <malloc.h>
+#include <process.h>
+#include <io.h>
+#include <fcntl.h>
+#include <internal.h>
+#include <errno.h>
+#include <msdos.h>
+#include <mtdll.h>
+#include <oscalls.h>
+#include <tchar.h>
+#include <dbgint.h>
+
+/* size for pipe buffer
+ */
+#define PSIZE     1024
+
+#define STDIN     0
+#define STDOUT    1
+
+#define SLASH _T("\\")
+#define SLASHCHAR _T('\\')
+#define XSLASHCHAR _T('/')
+#define DELIMITER _T(";")
+
+
+
+/* definitions for table of stream pointer - process handle pairs. the table
+ * is created, maintained and accessed by the idtab function. _popen and
+ * _pclose gain access to table entries only by calling idtab. Note that the
+ * table is expanded as necessary (by idtab) and free table entries are reused
+ * (an entry is free if its stream field is NULL), but the table is never
+ * contracted.
+ */
+
+typedef struct {
+        FILE *stream;
+        intptr_t prochnd;
+} IDpair;
+
+/* number of entries in idpairs table
+ */
+#ifndef _UNICODE
+unsigned __idtabsiz = 0;
+#else  /* _UNICODE */
+extern unsigned __idtabsiz;
+#endif  /* _UNICODE */
+
+/* pointer to first table entry
+ */
+#ifndef _UNICODE
+IDpair *__idpairs = NULL;
+#else  /* _UNICODE */
+extern IDpair *__idpairs;
+#endif  /* _UNICODE */
+
+/* function to find specified table entries. also, creates and maintains
+ * the table.
+ */
+static IDpair * __cdecl idtab(FILE *);
+
+
+/***
+*FILE *_popen(cmdstring,type) - initiate a pipe and a child command
+*
+*Purpose:
+*       Creates a pipe and asynchronously executes a child copy of the command
+*       processor with cmdstring (see system()). If the type string contains
+*       an 'r', the calling process can read child command's standard output
+*       via the returned stream. If the type string contains a 'w', the calling
+*       process can write to the child command's standard input via the
+*       returned stream.
+*
+*Entry:
+*       _TSCHAR *cmdstring - command to be executed
+*       _TSCHAR *type   - string of the form "r|w[b|t]", determines the mode
+*                         of the returned stream (i.e., read-only vs write-only,
+*                         binary vs text mode)
+*
+*Exit:
+*       If successful, returns a stream associated with one end of the created
+*       pipe (the other end of the pipe is associated with either the child
+*       command's standard input or standard output).
+*
+*       If an error occurs, NULL is returned.
+*
+*Exceptions:
+*
+*******************************************************************************/
+
+FILE * __cdecl _tpopen (
+        const _TSCHAR *cmdstring,
+        const _TSCHAR *type
+        )
+{
+
+        int phdls[2];             /* I/O handles for pipe */
+        int ph_open[2];           /* flags, set if correspond phdls is open */
+        int i1;                   /* index into phdls[] */
+        int i2;                   /* index into phdls[] */
+
+        int tm = 0;               /* flag indicating text or binary mode */
+
+        int stdhdl;               /* either STDIN or STDOUT */
+
+        HANDLE newhnd;            /* ...in calls to DuplicateHandle API */
+
+        FILE *pstream = NULL;     /* stream to be associated with pipe */
+
+        HANDLE prochnd;           /* handle for current process */
+
+        _TSCHAR *cmdexe;          /* pathname for the command processor */
+        _TSCHAR *envbuf = NULL;   /* buffer for the env variable */
+        intptr_t childhnd;        /* handle for child process (cmd.exe) */
+
+        IDpair *locidpair;        /* pointer to IDpair table entry */
+        _TSCHAR *buf = NULL, *pfin, *env;
+        _TSCHAR *CommandLine;
+        size_t CommandLineSize = 0;
+        _TSCHAR _type[3] = {0, 0, 0};
+
+        /* Info for spawning the child. */
+        STARTUPINFO StartupInfo;  /* Info for spawning a child */
+        BOOL childstatus = 0;
+        PROCESS_INFORMATION ProcessInfo; /* child process information */
+
+        errno_t save_errno;
+
+        int fh_lock_held = 0;
+        int popen_lock_held = 0;
+
+        /* first check for errors in the arguments
+         */
+        _VALIDATE_RETURN((cmdstring != NULL), EINVAL,NULL);
+        _VALIDATE_RETURN((type != NULL), EINVAL,NULL);
+
+        while (*type == _T(' '))
+        {
+            type++;
+  

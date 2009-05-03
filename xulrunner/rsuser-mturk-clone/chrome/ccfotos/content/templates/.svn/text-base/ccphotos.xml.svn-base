@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fd>
+  <ap nm="ccphotos-en">
+	<ev id="0" nm="newImage">
+		<ar nm="title" vl="Titulo com espacos"  wiz="ui:textfield" help="Title" />
+		<ar nm="from" vl="Ribeirao Preto"  wiz="ui:textfield" help="Location" />
+		<ar nm="license" vl="cc"  wiz="ui:textfield" help="license" />
+		<ar nm="author" vl="Sergio"  wiz="ui:textfield" help="author" />
+		<ar nm="keywords" vl="carro ferrari sonho"  wiz="ui:textfield" help="keywords" />
+		<ar nm="description" vl="Descricao da imagem"  wiz="ui:textarea" help="image description" />
+		<ar nm="tag" vl="carro"  wiz="ui:hiddenfield" fill="tagid" />
+		<fl nm="photo" vl="src"  wiz="keyfile:" />
+	</ev>
+  </ap>
+</fd>
+		

@@ -1,0 +1,48 @@
+<html>
+<body>
+<style>
+body {
+font-family:verdana; 
+font-size:74%;
+}
+</style>
+<h1>Help Panela PT-BR</h1>
+<p>Auxilio para o contribuidor Panela (MultiLanguage). Este documento tem informações para ajudar o contribuidor Panela , no contexto do site portugues e também English. 
+</p>
+<h2>Trabalhando nas imagens e Login</h2>
+Qdo for trabalhar em múitas imagens, deixe para fazer login no final antes de enviar. Note que as abas foram colocadas na melhor ordem ( ajuda, trabalho, login, enviar). Note que uma vez que fizer a operação na aba enviar, vc pode voltar normalmente para a Trabalho para verificar o acompanhando do envio. 
+
+<h2>Trabalhando com imagens, carregando</h2>
+<ul>
+<li> 1 certifique que o Campo Template ( em cima ) está configurado com o valor <span style="border:1px solid black;background-color:yellow;">Panela</span>
+</li>
+<li> 2 então utilize o botão [Selecionar Imagens] em cima para escolher as imagens que quer. Note que esta operação deve ser feita de uma vez, assim por exemplo vc pode utilizar do click do mouse e segurando a tecla SHIFT para ir selecionando todas as imagens que quer. Ou em caso o diretório ja esteja previamente configurado com todas as imagens que quer trabalhar, então vc pode tambem selecionar tudo, clicando em um arquivo qualquer, e depois utilizar a tecla CTRL+A. 
+</li>
+
+</ul>
+
+
+
+<h2>Trabalhando com imagens, preenchimento de campos</h2>
+Devem ser preenchidos todos os campos. 
+
+<h2>Trabalhando com imagens, duplicando campos</h2>
+
+Este recurso deve ser utilizado com cuidado. Quando desejar duplicar um campo ( autor ou localidade por exemplo ) pode-se então clicar no campo que quer duplicar, por exemplo clicar em cima do seu nome [ Seu Nome ] . Depois disso, então pode-se utilizar o botão [Duplicate Field] em baixo, e este fará com que todos ( *TODOS*) os campos equivalentes de todas as outras imagens fiquem com o mesmo valor. 
+<p>
+<b>Nunca coloque títulos duplicados, ou descrição</b>
+</p>
+<h2>Enviando Material</h2>
+<ul>
+<li>Uma vez com todo material preenchido;</li>
+<li>Depois feito o login e obtido valor de login correto / codigo = 1, erro 0 </li>
+<li>Selecionar Aba Enviando</li>
+<li style="background-color:yellow;border:1px solid black">Colocar Tag ( sem espaços ) uma única palavra ou múltiplas separadas por - ou _ </li>
+<li>Dica: Uma vez clicado neste campo, pode-se voltar a Aba Area de Trabalho para verificar se estão sendo enviados. Note que a cor em cada campo vai mudando para verde. Uma vez que todo material foi enviado então pode-se fechar a aplicação</li>
+</ul>
+<h2>Licença</h2>
+
+Todo material enviado deve ser considerado como propriedade de Marcio S Galli / Taboca Inc ou Taboca Comunicações. O material enviado poderá ser publicado como Creative Commons entre acordo em autor original e Taboca Inc. 
+
+</body>
+</html>

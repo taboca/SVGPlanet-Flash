@@ -1,0 +1,40 @@
+(CorExceptionFlag)VAL16((SHORT)flags);
+    }
+
+    DWORD GetTryOffset() const {
+        return VAL16(TryOffset);
+    }
+    void SetTryOffset(DWORD Offset) {
+        TryOffset = VAL16(Offset);
+    }
+
+    DWORD GetTryLength() const {
+        return TryLength;
+    }
+    void SetTryLength(DWORD Length) {
+        TryLength = Length;
+    }
+
+    DWORD GetHandlerOffset() const {
+        return VAL16(HandlerOffset);
+    }
+    void SetHandlerOffset(DWORD Offset) {
+        HandlerOffset = VAL16(Offset);
+    }
+
+    DWORD GetHandlerLength() const {
+        return HandlerLength;
+    }
+    void SetHandlerLength(DWORD Length) {
+        HandlerLength = Length;
+    }
+
+    DWORD GetClassToken() const {
+        return VAL32(ClassToken);
+    }
+    void SetClassToken(DWORD tok) {
+        ClassToken = VAL32(tok);
+    }
+
+    DWORD GetFilterOffset() const {
+        return VA

@@ -1,0 +1,224 @@
+ 
+//*********************************************************************
+//*                  Microsoft Windows                               **
+//*            Copyright(c) Microsoft Corp., 1996-1997               **
+//*********************************************************************
+
+//;begin_internal
+/***********************************************************************************************
+
+  This is a distributed SDK component - do not put any #includes or other directives that rely
+  upon files not dropped. If in doubt - build iedev
+
+  If you add comments please enclose in a ;begin_internal, ;end_internal block - such as this one!
+
+ ***********************************************************************************************/
+//;end_internal
+
+//;begin_internal
+#ifndef __COREDISP_H__
+#define __COREDISP_H__
+//;end_internal
+
+//;begin_internal
+//
+// The following dispid must be the smallest possible dispid so that it
+// always ends up first in our attr array.
+// It does not need to be exposed to the outside world
+#define DISPID_AAHEADER                 MINLONG             // DISPID is 0x80000000
+#define DISPID_RECALC_INFO              MINLONG+1
+//;end_internal
+
+
+#define DISPID_XOBJ_MIN                 0x80010000
+#define DISPID_XOBJ_MAX                 0x8001FFFF
+#define DISPID_XOBJ_BASE                DISPID_XOBJ_MIN
+#define DISPID_HTMLOBJECT               (DISPID_XOBJ_BASE   + 500)
+#define DISPID_ELEMENT                  (DISPID_HTMLOBJECT  + 500)
+#define DISPID_SITE                     (DISPID_ELEMENT     + 1000)
+#define DISPID_OBJECT                   (DISPID_SITE        + 1000)
+#define DISPID_STYLE                    (DISPID_OBJECT      + 1000)
+#define DISPID_ATTRS                    (DISPID_STYLE       + 1000)
+#define DISPID_EVENTS                   (DISPID_ATTRS       + 1000)
+#define DISPID_XOBJ_EXPANDO             (DISPID_EVENTS      + 1000)
+#define DISPID_XOBJ_ORDINAL             (DISPID_XOBJ_EXPANDO+ 1000)
+
+//;begin_internal
+// Expandos for ActiveX controls, note these are very limited compared to
+// normal expandos on an element.
+
+#define DISPID_ACTIVEX_EXPANDO_BASE      DISPID_XOBJ_EXPANDO
+#define DISPID_ACTIVEX_EXPANDO_MAX       (DISPID_ACTIVEX_EXPANDO_BASE + 999)
+
+#define DISPID_OBJECT_ORDINAL_BASE       DISPID_XOBJ_ORDINAL
+#define DISPID_OBJECT_ORDINAL_MAX       (DISPID_OBJECT_ORDINAL_BASE + 999)
+
+#define DISPID_COLLECTION_MIN           1000000
+#define DISPID_COLLECTION_MAX           2999999
+
+// Divide collection dispid space into "named member" half and "ordinal access" half
+// for stylesheets collection.
+#define DISPID_STYLESHEETSCOLLECTION_NAMED_BASE        (DISPID_COLLECTION_MIN)
+#define DISPID_STYLESHEETSCOLLECTION_NAMED_MAX         (DISPID_COLLECTION_MIN+((DISPID_COLLECTION_MAX-DISPID_COLLECTION_MIN)/2))
+#define DISPID_STYLESHEETSCOLLECTION_ORDINAL_BASE      (DISPID_STYLESHEETSCOLLECTION_NAMED_MAX+1)
+#define DISPID_STYLESHEETSCOLLECTION_ORDINAL_MAX       (DISPID_COLLECTION_MAX)
+
+// DISPID range for expandos not associated with an ActiveX control
+#define DISPID_EXPANDO_BASE             3000000
+#define DISPID_EXPANDO_MAX              3999999
+
+#define IsStandardDispid(dispid)        (dispid <= 0)
+#define IsExpandoDispid(dispid)         (DISPID_EXPANDO_BASE <= dispid && dispid <= DISPID_EXPANDO_MAX)
+
+#define DISPID_EVENTHOOK_SENSITIVE_BASE   4000000
+#define DISPID_EVENTHOOK_SENSITIVE_MAX    4499999
+#define DISPID_EVENTHOOK_INSENSITIVE_BASE 4500000
+#define DISPID_EVENTHOOK_INSENSITIVE_MAX  4999999
+
+#define DISPID_PEER_HOLDER_BASE         5000000
+
+#define IsPeerDispid(dispid)            (DISPID_PEER_HOLDER_BASE <= dispid)
+
+//;end_internal
+
+//;begin_internal
+//
+// IE 4 dispids that no longer exist
+//
+//;end_internal
+#define DISPID_HTMLOPTIONBUTTONELEMENTEVENTS_ONCHANGE       DISPID_HTMLINPUTTEXTELEMENTEVENTS_ONCHANGE
+
+//;begin_internal
+//
+// Standard control properties
+//
+//;end_internal
+
+//;begin_internal
+//;QUESTION: rgardner - why do we use these names ???
+//;end_internal
+#define DISPID_CommonCtrl_FONTNAME        1
+#define DISPID_CommonCtrl_FONTSIZE        2
+#define DISPID_CommonCtrl_FONTBOLD        3
+#define DISPID_CommonCtrl_FONTITAL        4
+#define DISPID_CommonCtrl_FONTUNDER       5
+#define DISPID_CommonCtrl_FONTSTRIKE      6
+#define DISPID_CommonCtrl_FONTWEIGHT      7
+#define DISPID_CommonCtrl_FONTCHARSET     8
+#define DISPID_CommonCtrl_FONTSUPERSCRIPT 9
+#define DISPID_CommonCtrl_FONTSUBSCRIPT   10
+
+// Data Binding DISPID's
+#define DISPID_MSDATASRCINTERFACE       (-3900)
+#define DISPID_ADVISEDATASRCCHANGEEVENT (-3901)
+
+
+//;begin_internal
+// DISPID values for HTML Dialogs files per interface
+//;end_internal
+
+#define DISPID_HTMLDLG                          25000
+#define DISPID_HTMLDLGMODEL                     26000
+
+//;begin_internal
+// DISPID values for HTML Popup files per interface
+//;end_internal
+
+#define DISPID_HTMLPOPUP                        27000
+
+//;begin_internal
+// DISPID values for HTML Application files per interface
+//;end_internal
+
+#define DISPID_HTMLAPP                          5000
+
+//;begin_internal
+//----------------------------------------------------------------------------
+//
+//  Semi-standard x-object properties.
+//
+//  These values match those used by VB and are for the benefit of controls
+//  with hard coded knowledge of VB.
+//
+//----------------------------------------------------------------------------
+//;end_internal
+
+#define STDPROPID_XOBJ_NAME                 (DISPID_XOBJ_BASE + 0x0)
+#define STDPROPID_XOBJ_INDEX                (DISPID_XOBJ_BASE + 0x1)
+//;begin_internal
+// for IE3 compatibility
+
+#define STDPROPID_IE3XOBJ_OBJECTALIGN     (DISPID_XOBJ_BASE + 0x1) 
+
+// STDPROPID_XOBJ_BASEHREF is a constant used by IE3
+//;end_internal
+#define STDPROPID_XOBJ_BASEHREF             (DISPID_XOBJ_BASE + 0x2) 
+#define STDPROPID_XOBJ_LEFT                 (DISPID_XOBJ_BASE + 0x3)
+#define STDPROPID_XOBJ_TOP                  (DISPID_XOBJ_BASE + 0x4)
+#define STDPROPID_XOBJ_WIDTH                (DISPID_XOBJ_BASE + 0x5)
+#define STDPROPID_XOBJ_HEIGHT               (DISPID_XOBJ_BASE + 0x6)
+#define STDPROPID_XOBJ_VISIBLE              (DISPID_XOBJ_BASE + 0x7)
+#define STDPROPID_XOBJ_PARENT               (DISPID_XOBJ_BASE + 0x8)
+#define STDPROPID_XOBJ_DRAGMODE             (DISPID_XOBJ_BASE + 0x9)
+#define STDPROPID_XOBJ_DRAGICON             (DISPID_XOBJ_BASE + 0xA)
+#define STDPROPID_XOBJ_TAG                  (DISPID_XOBJ_BASE + 0xB)
+#define STDPROPID_XOBJ_TABSTOP              (DISPID_XOBJ_BASE + 0xE)
+#define STDPROPID_XOBJ_TABINDEX             (DISPID_XOBJ_BASE + 0xF)
+#define STDPROPID_XOBJ_HELPCONTEXTID        (DISPID_XOBJ_BASE + 0x32)
+#define STDPROPID_XOBJ_DEFAULT              (DISPID_XOBJ_BASE + 0x37)
+#define STDPROPID_XOBJ_CANCEL               (DISPID_XOBJ_BASE + 0x38)
+#define STDPROPID_XOBJ_LEFTNORUN            (DISPID_XOBJ_BASE + 0x39)
+#define STDPROPID_XOBJ_TOPNORUN             (DISPID_XOBJ_BASE + 0x3A)
+#define STDPROPID_XOBJ_ALIGNPERSIST         (DISPID_XOBJ_BASE + 0x3C)
+#define STDPROPID_XOBJ_LINKTIMEOUT          (DISPID_XOBJ_BASE + 0x3D)
+#define STDPROPID_XOBJ_LINKTOPIC            (DISPID_XOBJ_BASE + 0x3E)
+#define STDPROPID_XOBJ_LINKITEM             (DISPID_XOBJ_BASE + 0x3F)
+#define STDPROPID_XOBJ_LINKMODE             (DISPID_XOBJ_BASE + 0x40)
+#define STDPROPID_XOBJ_DATACHANGED          (DISPID_XOBJ_BASE + 0x41)
+#define STDPROPID_XOBJ_DATAFIELD            (DISPID_XOBJ_BASE + 0x42)
+#define STDPROPID_XOBJ_DATASOURCE           (DISPID_XOBJ_BASE + 0x43)
+#define STDPROPID_XOBJ_WHATSTHISHELPID      (DISPID_XOBJ_BASE + 0x44)
+#define STDPROPID_XOBJ_CONTROLTIPTEXT       (DISPID_XOBJ_BASE + 0x45)
+#define STDPROPID_XOBJ_STATUSBARTEXT        (DISPID_XOBJ_BASE + 0x46)
+#define STDPROPID_XOBJ_APPLICATION          (DISPID_XOBJ_BASE + 0x47)
+#define STDPROPID_XOBJ_BLOCKALIGN           (DISPID_XOBJ_BASE + 0x48)
+#define STDPROPID_XOBJ_CONTROLALIGN         (DISPID_XOBJ_BASE + 0x49)
+#define STDPROPID_XOBJ_STYLE                (DISPID_XOBJ_BASE + 0x4A)
+#define STDPROPID_XOBJ_COUNT                (DISPID_XOBJ_BASE + 0x4B)
+#define STDPROPID_XOBJ_DISABLED             (DISPID_XOBJ_BASE + 0x4C)
+#define STDPROPID_XOBJ_RIGHT                (DISPID_XOBJ_BASE + 0x4D)
+#define STDPROPID_XOBJ_BOTTOM               (DISPID_XOBJ_BASE + 0x4E)
+
+//;begin_internal
+//----------------------------------------------------------------------------
+//
+//  Semi-standard x-object properties.
+//
+//  These are events that are fired for all sites
+//----------------------------------------------------------------------------
+//;end_internal
+
+#define STDDISPID_XOBJ_ONBLUR                           (DISPID_XOBJ_BASE)
+#define STDDISPID_XOBJ_ONFOCUS                          (DISPID_XOBJ_BASE + 1)
+#define STDDISPID_XOBJ_BEFOREUPDATE                     (DISPID_XOBJ_BASE + 4)
+#define STDDISPID_XOBJ_AFTERUPDATE                      (DISPID_XOBJ_BASE + 5)
+#define STDDISPID_XOBJ_ONROWEXIT                        (DISPID_XOBJ_BASE + 6)
+#define STDDISPID_XOBJ_ONROWENTER                       (DISPID_XOBJ_BASE + 7)
+#define STDDISPID_XOBJ_ONMOUSEOVER                      (DISPID_XOBJ_BASE + 8)
+#define STDDISPID_XOBJ_ONMOUSEOUT                       (DISPID_XOBJ_BASE + 9)
+#define STDDISPID_XOBJ_ONHELP                           (DISPID_XOBJ_BASE + 10)
+#define STDDISPID_XOBJ_ONDRAGSTART                      (DISPID_XOBJ_BASE + 11)
+#define STDDISPID_XOBJ_ONSELECTSTART                    (DISPID_XOBJ_BASE + 12)
+#define STDDISPID_XOBJ_ERRORUPDATE                      (DISPID_XOBJ_BASE + 13)
+#define STDDISPID_XOBJ_ONDATASETCHANGED                 (DISPID_XOBJ_BASE + 14)
+#define STDDISPID_XOBJ_ONDATAAVAILABLE                  (DISPID_XOBJ_BASE + 15)
+#define STDDISPID_XOBJ_ONDATASETCOMPLETE                (DISPID_XOBJ_BASE + 16)
+#define STDDISPID_XOBJ_ONFILTER                         (DISPID_XOBJ_BASE + 17)
+#define STDDISPID_XOBJ_ONLOSECAPTURE                    (DISPID_XOBJ_BASE + 18)
+#define STDDISPID_XOBJ_ONPROPERTYCHANGE                 (DISPID_XOBJ_BASE + 19)
+#define STDDISPID_XOBJ_ONDRAG                           (DISPID_XOBJ_BASE + 20)
+#define STDDISPID_XOBJ_ONDRAGEND                        (DISPID_XOBJ_BASE + 21)
+#define STDDISPID_XOBJ_ONDRAGENTER                      (DISPID_XOBJ_BASE + 22)
+#define STDDISPID_XOBJ_ONDRAGOVER                       (DISPID_XOBJ_BASE + 23)
+#define STDDISPID_XOBJ_ONDRAGLEAVE                      (DISPID_XOBJ_BASE + 24)
+#define STDDISPID_XOBJ_ONDROP                           

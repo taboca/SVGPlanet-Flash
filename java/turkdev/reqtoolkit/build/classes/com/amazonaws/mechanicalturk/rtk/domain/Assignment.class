@@ -1,0 +1,58 @@
+ent beginner to end of line are ignored.
+Includes just "<tt class="character">#</tt>" by default.   
+</dl>
+
+<p>
+<dl><dt><b><tt id='l2h-4921' xml:id='l2h-4921' class="member">wordchars</tt></b></dt>
+<dd>
+The string of characters that will accumulate into multi-character
+tokens.  By default, includes all ASCII alphanumerics and
+underscore.
+</dl>
+
+<p>
+<dl><dt><b><tt id='l2h-4922' xml:id='l2h-4922' class="member">whitespace</tt></b></dt>
+<dd>
+Characters that will be considered whitespace and skipped.  Whitespace
+bounds tokens.  By default, includes space, tab, linefeed and
+carriage-return.
+</dl>
+
+<p>
+<dl><dt><b><tt id='l2h-4923' xml:id='l2h-4923' class="member">escape</tt></b></dt>
+<dd>
+Characters that will be considered as escape. This will be only used
+in POSIX mode, and includes just "<tt class="character">\</tt>" by default.
+
+<span class="versionnote">New in version 2.3.</span>
+
+</dl>
+
+<p>
+<dl><dt><b><tt id='l2h-4924' xml:id='l2h-4924' class="member">quotes</tt></b></dt>
+<dd>
+Characters that will be considered string quotes.  The token
+accumulates until the same quote is encountered again (thus, different
+quote types protect each other as in the shell.)  By default, includes
+ASCII single and double quotes.
+</dl>
+
+<p>
+<dl><dt><b><tt id='l2h-4925' xml:id='l2h-4925' class="member">escapedquotes</tt></b></dt>
+<dd>
+Characters in <tt class="member">quotes</tt> that will interpret escape characters
+defined in <tt class="member">escape</tt>.  This is only used in POSIX mode, and
+includes just "<tt class="character">"</tt>" by default.
+
+<span class="versionnote">New in version 2.3.</span>
+
+</dl>
+
+<p>
+<dl><dt><b><tt id='l2h-4926' xml:id='l2h-4926' class="member">whitespace_split</tt></b></dt>
+<dd>
+If <code>True</code>, tokens will only be split in whitespaces. This is useful, for
+example, for parsing command lines with <tt class="class">shlex</tt>, getting tokens
+in a similar way to shell arguments.
+
+<span class="versionnote">New in ver

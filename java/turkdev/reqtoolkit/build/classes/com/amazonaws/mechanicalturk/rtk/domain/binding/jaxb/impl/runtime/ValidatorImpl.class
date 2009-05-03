@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- /home/espenr/tmp/qt-3-espenr-28736/qt-x11-free-3.3.4/src/tools/qwaitcondition_unix.cpp:57 -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>QWaitCondition Class</title>
+<style type="text/css"><!--
+fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }
+body { background: #ffffff; color: black; }
+--></style>
+</head>
+<body>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr bgcolor="#E5E5E5">
+<td valign=center>
+ <a href="index.html">
+<font color="#004faf">Home</font></a>
+ | <a href="classes.html">
+<font color="#004faf">All&nbsp;Classes</font></a>
+ | <a href="mainclasses.html">
+<font color="#004faf">Main&nbsp;Classes</font></a>
+ | <a href="annotated.html">
+<font color="#004faf">Annotated</font></a>
+ | <a href="groups.html">
+<font color="#004faf">Grouped&nbsp;Classes</font></a>
+ | <a href="functions.html">
+<font color="#004faf">Functions</font></a>
+</td>
+<td align="right" valign="center"><img src="logo32.png" align="right" width="64" height="32" border="0"></td></tr></table><h1 align=center>QWaitCondition Class Reference</h1>
+
+<p>The QWaitCondition class allows waiting/waking for conditions between threads.
+<a href="#details">More...</a>
+<p>All the functions in this class are <a href="threads.html#threadsafe">thread-safe</a> when Qt is built with thread support.</p>
+<p><tt>#include &lt;<a href="qwaitcondition-h.html">qwaitcondition.h</a>&gt;</tt>
+<p><a href="qwaitcondition-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li class=fn><a href="#QWaitCondition"><b>QWaitCondition</b></a> ()</li>
+<li class=fn>virtual <a href="#~QWaitCondition"><b>~QWaitCondition</b></a> ()</li>
+<li class=fn>bool <a href="#wait"><b>wait</b></a> ( unsigned&nbsp;long&nbsp;time = ULONG_MAX )</li>
+<li class=fn>bool <a href="#wait-2"><b>wait</b></a> ( QMutex&nbsp;*&nbsp;mutex, unsigned&nbsp;long&nbsp;time = ULONG_MAX )</li>
+<li class=fn>void <a href="#wakeOne"><b>wakeOne</b></a> ()</li>
+<li class=fn>void <a href="#wakeAll"><b>wakeAll</b></a> ()</li>
+</ul>
+<hr><a name="details"></a><h2>Detailed Description</h2>
+
+
+
+The QWaitCondition class allows waiting/waking for conditions between threads.
+<p> 
+
+<p> QWaitConditions allow a thread to tell other threads that some
+sort of condition has been met; one or many threads can block
+waiting for a QWaitCondition to set a condition with <a href="#wakeOne">wakeOne</a>() or
+<a href="#wakeAll">wakeAll</a>(). Use wakeOne() to wake one randomly selected event or
+wakeAll() to wake them all. For example, say we have three tasks
+that should be performed every time the user presses a key; each
+task could be split into a thread, each of which would have a
+run() body like this:
+<p> <pre>
+    QWaitCondition key_pressed;
+
+    for (;;) {
+        key_pressed.<a href="#wait">wait</a>(); // This is a QWaitCondition global variable
+        // Key was pressed, do something interesting
+        do_something();
+    }
+    </pre>
+ 
+<p> A fourth thread would read key presses and wake the other three
+threads up every ti

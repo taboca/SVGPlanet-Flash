@@ -1,0 +1,50 @@
+3 -> POUND SIGN
+    u'\u20ac'   #  0xA4 -> EURO SIGN
+    u'\u20af'   #  0xA5 -> DRACHMA SIGN
+    u'\xa6'     #  0xA6 -> BROKEN BAR
+    u'\xa7'     #  0xA7 -> SECTION SIGN
+    u'\xa8'     #  0xA8 -> DIAERESIS
+    u'\xa9'     #  0xA9 -> COPYRIGHT SIGN
+    u'\u037a'   #  0xAA -> GREEK YPOGEGRAMMENI
+    u'\xab'     #  0xAB -> LEFT-POINTING DOUBLE ANGLE QUOTATION MARK
+    u'\xac'     #  0xAC -> NOT SIGN
+    u'\xad'     #  0xAD -> SOFT HYPHEN
+    u'\ufffe'
+    u'\u2015'   #  0xAF -> HORIZONTAL BAR
+    u'\xb0'     #  0xB0 -> DEGREE SIGN
+    u'\xb1'     #  0xB1 -> PLUS-MINUS SIGN
+    u'\xb2'     #  0xB2 -> SUPERSCRIPT TWO
+    u'\xb3'     #  0xB3 -> SUPERSCRIPT THREE
+    u'\u0384'   #  0xB4 -> GREEK TONOS
+    u'\u0385'   #  0xB5 -> GREEK DIALYTIKA TONOS
+    u'\u0386'   #  0xB6 -> GREEK CAPITAL LETTER ALPHA WITH TONOS
+    u'\xb7'     #  0xB7 -> MIDDLE DOT
+    u'\u0388'   #  0xB8 -> GREEK CAPITAL LETTER EPSILON WITH TONOS
+    u'\u0389'   #  0xB9 -> GREEK CAPITAL LETTER ETA WITH TONOS
+    u'\u038a'   #  0xBA -> GREEK CAPITAL LETTER IOTA WITH TONOS
+    u'\xbb'     #  0xBB -> RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK
+    u'\u038c'   #  0xBC -> GREEK CAPITAL LETTER OMICRON WITH TONOS
+    u'\xbd'     #  0xBD -> VULGAR FRACTION ONE HALF
+    u'\u038e'   #  0xBE -> GREEK CAPITAL LETTER UPSILON WITH TONOS
+    u'\u038f'   #  0xBF -> GREEK CAPITAL LETTER OMEGA WITH TONOS
+    u'\u0390'   #  0xC0 -> GREEK SMALL LETTER IOTA WITH DIALYTIKA AND TONOS
+    u'\u0391'   #  0xC1 -> GREEK CAPITAL LETTER ALPHA
+    u'\u0392'   #  0xC2 -> GREEK CAPITAL LETTER BETA
+    u'\u0393'   #  0xC3 -> GREEK CAPITAL LETTER GAMMA
+    u'\u0394'   #  0xC4 -> GREEK CAPITAL LETTER DELTA
+    u'\u0395'   #  0xC5 -> GREEK CAPITAL LETTER EPSILON
+    u'\u0396'   #  0xC6 -> GREEK CAPITAL LETTER ZETA
+    u'\u0397'   #  0xC7 -> GREEK CAPITAL LETTER ETA
+    u'\u0398'   #  0xC8 -> GREEK CAPITAL LETTER THETA
+    u'\u0399'   #  0xC9 -> GREEK CAPITAL LETTER IOTA
+    u'\u039a'   #  0xCA -> GREEK CAPITAL LETTER KAPPA
+    u'\u039b'   #  0xCB -> GREEK CAPITAL LETTER LAMDA
+    u'\u039c'   #  0xCC -> GREEK CAPITAL LETTER MU
+    u'\u039d'   #  0xCD -> GREEK CAPITAL LETTER NU
+    u'\u039e'   #  0xCE -> GREEK CAPITAL LETTER XI
+    u'\u039f'   #  0xCF -> GREEK CAPITAL LETTER OMICRON
+    u'\u03a0'   #  0xD0 -> GREEK CAPITAL LETTER PI
+    u'\u03a1'   #  0xD1 -> GREEK CAPITAL LETTER RHO
+    u'\ufffe'
+    u'\u03a3'   #  0xD3 -> GREEK CAPITAL LETTER SIGMA
+  

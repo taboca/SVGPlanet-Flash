@@ -1,0 +1,50 @@
+peSpec '(' nameValPairs ')' 
+                        | '.permission' secAction typeSpec 
+                        | psetHead bytes ')' 
+                        ;
+
+psetHead                : '.permissionset' secAction '=' '(' 
+                        ;
+
+nameValPairs            : nameValPair 
+                        | nameValPair ',' nameValPairs 
+                        ;
+
+nameValPair             : compQstring '=' caValue 
+                        ;
+
+truefalse				: 'true' 
+						| 'false' 
+						;
+
+caValue                 : truefalse 
+                        | int32 
+                        | 'int32' '(' int32 ')' 
+                        | compQstring 
+                        | className '(' 'int8' ':' int32 ')' 
+                        | className '(' 'int16' ':' int32 ')' 
+                        | className '(' 'int32' ':' int32 ')' 
+                        | className '(' int32 ')' 
+                        ;
+
+secAction               : 'request' 
+                        | 'demand' 
+                        | 'assert' 
+                        | 'deny' 
+                        | 'permitonly' 
+                        | 'linkcheck' 
+                        | 'inheritcheck' 
+                        | 'reqmin' 
+                        | 'reqopt' 
+                        | 'reqrefuse' 
+                        | 'prejitgrant' 
+                        | 'prejitdeny' 
+                        | 'noncasdemand' 
+                        | 'noncaslinkdemand' 
+                        | 'noncasinheritance' 
+                        ;
+
+extSourceSpec           : '.line' int32 SQSTRING 
+                        | '.line' int32 
+                        | '.line' int32 ':' int32 SQSTRING 
+                        | '

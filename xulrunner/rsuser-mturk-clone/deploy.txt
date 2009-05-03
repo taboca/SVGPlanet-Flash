@@ -1,0 +1,2 @@
+/Library/Frameworks/XUL.framework/xulrunner-bin --install-app filename.zip ~marciogalli/Desktop/output
+

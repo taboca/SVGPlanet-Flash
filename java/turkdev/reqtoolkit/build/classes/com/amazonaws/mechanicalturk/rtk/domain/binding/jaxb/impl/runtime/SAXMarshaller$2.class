@@ -1,0 +1,32 @@
+#!/usr/bin/env python
+'''
+Python unit testing framework, based on Erich Gamma's JUnit and Kent Beck's
+Smalltalk testing framework.
+
+This module contains the core framework classes that form the basis of
+specific test cases and suites (TestCase, TestSuite etc.), and also a
+text-based utility class for running the tests and reporting the results
+ (TextTestRunner).
+
+Simple usage:
+
+    import unittest
+
+    class IntegerArithmenticTestCase(unittest.TestCase):
+        def testAdd(self):  ## test method names begin 'test*'
+            self.assertEquals((1 + 2), 3)
+            self.assertEquals(0 + 1, 1)
+        def testMultiply(self):
+            self.assertEquals((0 * 10), 0)
+            self.assertEquals((5 * 8), 40)
+
+    if __name__ == '__main__':
+        unittest.main()
+
+Further information is available in the bundled documentation, and from
+
+  http://pyunit.sourceforge.net/
+
+Copyright (c) 1999-2003 Steve Purcell
+This module is free software, and you may redistribute it and/or modify
+it under the same terms

@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<oor:component-data oor:name="FormWizard" oor:package="org.openoffice.Office" xmlns:install="http://openoffice.org/2004/installation" xmlns:oor="http://openoffice.org/2001/registry" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<node oor:name="FormWizard">
+		<node oor:name="Styles">
+			<node oor:name="style1" oor:op="replace">
+				<prop oor:name="Index">
+					<value>0</value>
+				</prop>
+				<prop oor:name="Name">
+					<value xml:lang="en-US">Beige</value>
+				</prop>
+				<prop oor:name="CssHref">
+					<value>beige.css</value>
+				</prop>
+			</node>
+			<node oor:name="style2" oor:op="replace">
+				<prop oor:name="Index">
+					<value>2</value>
+				</prop>
+				<prop oor:name="Name">
+					<value xml:lang="en-US">Bright Blue</value>
+				</prop>
+				<prop oor:name="CssHref">
+					<value>bgr.css</value>
+				</prop>
+			</node>
+			<node oor:name="style3" oor:op="replace">
+				<prop oor:name="Index">
+					<value>8</value>
+				</prop>
+				<prop oor:name="Name">
+					<value xml:lang="en-

@@ -1,0 +1,109 @@
+</A><H3>
+LoaderUtils</H3>
+<PRE>
+public <B>LoaderUtils</B>()</PRE>
+<DL>
+</DL>
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Method Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="setContextClassLoader(java.lang.ClassLoader)"><!-- --></A><H3>
+setContextClassLoader</H3>
+<PRE>
+public static void <B>setContextClassLoader</B>(java.lang.ClassLoader&nbsp;loader)</PRE>
+<DL>
+<DD>Set the context classloader
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>loader</CODE> - the ClassLoader to be used as the context class loader
+      on the current thread.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getContextClassLoader()"><!-- --></A><H3>
+getContextClassLoader</H3>
+<PRE>
+public static java.lang.ClassLoader <B>getContextClassLoader</B>()</PRE>
+<DL>
+<DD>JDK1.1 compatible access to set the context class loader.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the ClassLoader instance being used as the context
+      classloader on the current thread. Returns null on JDK 1.1</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="isContextLoaderAvailable()"><!-- --></A><H3>
+isContextLoaderAvailable</H3>
+<PRE>
+public static boolean <B>isContextLoaderAvailable</B>()</PRE>
+<DL>
+<DD>Indicates if the context class loader methods are available
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>true if the get and set methods dealing with the context
+      classloader are available.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getClassSource(java.lang.Class)"><!-- --></A><H3>
+getClassSource</H3>
+<PRE>
+public static java.io.File <B>getClassSource</B>(java.lang.Class&nbsp;c)</PRE>
+<DL>
+<DD>Find the directory or jar file the class has been loaded from.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>c</CODE> - the class whose location is required.
+<DT><B>Returns:</B><DD>the file or jar with the class or null if we cannot
+         determine the location.<DT><B>Since:</B></DT>
+  <DD>Ant 1.6</DD>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getResourceSource(java.lang.ClassLoader, java.lang.String)"><!-- --></A><H3>
+getResourceSource</H3>
+<PRE>
+public static java.io.File <B>getResourceSource</B>(java.lang.ClassLoader&nbsp;c,
+                                             java.lang.String&nbsp;resource)</PRE>
+<DL>
+<DD>Find the directory or a give resource has been loaded from.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>c</CODE> - the classloader to be consulted for the source<DD><CODE>resource</CODE> - the resource whose location is required.
+<DT><B>Returns:</B><DD>the file with the resource source or null if
+         we cannot determine the location.<DT><B>Since:</B></DT>
+  <DD>Ant 1.6</DD>
+</DL>
+</DD>
+</DL>
+<!-- ========= END OF CLASS DATA ========= -->
+<HR>
+
+
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<A NAME="navbar_bottom"><!-- --></A>
+<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_bottom_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" C

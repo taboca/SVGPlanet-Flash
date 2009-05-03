@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsl:stylesheet version="1.0"  xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+<xsl:output method="xml" indent="yes"/>
+  
+  <xsl:template match="/">
+    <items>
+      <xsl:apply-templates select="keys/list/image" />
+    </items>
+  </xsl:template>
+
+  <xsl:template match="keys/list/image"><item>
+    <xsl:attribute name="refimage">
+      <xsl:value-of select="@href"  disable-output-escaping="yes" />
+    </xsl:attribute><![CDATA[
+  <QuestionForm xmlns="http://mechanicalturk.amazonaws.com/AWSMechanicalTurkDataSchemas/2005-10-01/QuestionForm.xsd">
+	<Question>
+		<QuestionIdentifier>Label a Title for the image</QuestionIdentifier>
+		<QuestionContent>
+			<Title>Title has to be shorter as you like ( not too many words ).</Title>
+			<Text>Label the title as you like, based on focus subject of the image. If _POSSIBLE_ please no periods at the end of the title. Content will be of property of the requester, so dont use trademarks or copyrighted content in text. </Text>
+<Binary>
+  <MimeType>
+    <Type>image</Type>
+    <SubType>jpg</SubType>
+  </MimeType>
+<DataURL>]]><xsl:value-of select="@href"  disable-output-escaping="yes" /><![CDATA[ </DataURL>
+  <AltText>Describe the image.</AltText>
+</Binary>
+		</QuestionContent>
+		<AnswerSpecification>
+<FreeTextAnswer>
+  <Constraints>
+    <Length minLength="15" maxLength="180" />
+  </Constraints>
+  <DefaultText></DefaultText>
+</FreeTextAnswer>
+		</AnswerSpecification>
+	</Question>
+	<Question>
+		<QuestionIdentifier>Content</QuestionIdentifier>
+		<QuestionContent>
+			<Title>Now the content description, describe it as you understand the picture. If you dont know technical name, use scenarios or your understanding.</Title>
+			<Text>Good english wording, okay to not be a huge text, focus on image object/subject or its environment, as you wish. </Text>
+		</QuestionContent>
+		<AnswerSpecification>
+			<FreeTextAnswer>
+				  <Constraints>
+				    <Length minLength="15" maxLength="260" />
+				  </Constraints>
+				  <DefaultText></DefaultText>
+			</FreeTextAnswer>
+		</AnswerSpecification>
+	</Question>
+</QuestionForm>
+]]></item>
+
+  </xsl:template>
+
+</xsl:stylesheet>

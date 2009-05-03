@@ -1,0 +1,155 @@
+n == __winitenv)
+            _wenviron = copy_environ(_wenviron);
+#else  /* WPRFLAG */
+        if (_environ == __initenv)
+            _environ = copy_environ(_environ);
+#endif  /* WPRFLAG */
+
+        /* see if requested environment array exists */
+        if (_tenviron == NULL) {
+
+            /*
+             * The requested type of environment does not exist.
+             * See if other type exists, if so convert it to requested type.
+             * The functions that convert the enviroment (__mbtow_environ and
+             * __wtomb_environ) will call this function (__crt[w]setenv) once
+             * for each of the pre-existing environment variables. To avoid
+             * an infinite loop, test the primary flag.
+             */
+
+#ifdef WPRFLAG
+            if (primary && _environ)
+            {
+                _wenvptr = __crtGetEnvironmentStringsW();
+                if ( _wsetenvp() < 0 )
+                    if (__mbtow_environ() != 0)
+                    {
+                        errno = EINVAL;
+                        return -1;
+                    }
+            }
+#else  /* WPRFLAG */
+            if (primary && _wenviron)
+            {
+                if (__wtomb_environ() != 0)
+                {
+                    errno = EINVAL;
+                    return -1;
+                }
+            }
+#endif  /* WPRFLAG */
+            else {
+                /* nothing to remove, return */
+                if ( remove )
+                    return 0;
+                else {
+                    /* create ones that do not exist */
+
+                    if (_environ == NULL)
+                    {
+                        if ( (_environ = _malloc_crt(sizeof(char *))) == NULL)
+                            return -1;
+                        *_environ = NULL;
+                    }
+
+                    if (_wenviron == NULL)
+                    {
+                        if ( (_wenviron = _malloc_crt(sizeof(wchar_t *))) == NULL)
+                            return -1;
+                        *_wenviron = NULL;
+                    }
+                }
+            }
+        }
+
+        /*
+         * At this point, the two types of environments are in sync (as much
+         * as they can be anyway). The only way they can get out of sync
+         * (besides users directly modifiying the environment) is if there
+         * are conversion problems: If the user sets two Unicode EVs,
+         * "foo1" and "foo2" and converting then to multibyte yields "foo?"
+         * and "foo?", then the environment blocks will differ.
+         */
+
+        /* init env pointers */
+        env = _tenviron;
+                if(!env)
+                {
+                        _ASSERTE(("CRT Logic error during setenv",0));
+                        return -1;
+                }
+
+        /* See if the string is already in the environment */
+#ifdef WPRFLAG
+        ix = wfindenv(option, (int)(equal - option));
+#else  /* WPRFLAG */
+        ix = findenv(option, (int)(equal - option));
+#endif  /* WPRFLAG */
+
+        if ((ix >= 0) && (*env != NULL)) {
+            /*
+             * String is already in the environment. Free up the original
+             * string. Then, install the new string or shrink the environment,
+             * whichever is warranted.
+             */
+            _free_crt(env[ix]);
+
+            if (remove) {
+
+                /* removing -- move all the later strings up */
+                for ( ; env[ix] != NULL; ++ix) {
+                    env[ix] = env[ix+1];
+                }
+
+                /* shrink the environment memory block
+                   (ix now has number of strings, including NULL) --
+                   this realloc probably can't fail, since we're
+                   shrinking a mem block, but we're careful anyway. */
+                if (ix < (SIZE_MAX / sizeof(_TSCHAR *)) &&
+                    (env = (_TSCHAR **) _recalloc_crt(_tenviron, ix, sizeof(_TSCHAR *))) != NULL)
+                    _tenviron = env;
+            }
+            else {
+                /* replace the option */
+                env[ix] = (_TSCHAR *) option;
+
+                /* we now own the pointer, so NULL out the incoming pointer */
+                *poption=NULL;
+            }
+        }
+        else {
+            /*
+             * String is NOT in the environment
+             */
+            if ( !remove )  {
+                /*
+                 * Append the string to the environ table. Note that
+                 * table must be grown to do this.
+                 */
+                if (ix < 0)
+                    ix = -ix;    /* ix = length of environ table */
+
+                if ((ix + 2) < ix ||
+                    (ix + 2) >= (SIZE_MAX / sizeof(_TSCHAR *)) ||
+                    (env = (_TSCHAR **)_recalloc_crt(_tenviron, sizeof(_TSCHAR *), (ix + 2))) == NULL)
+                    return -1;
+
+                env[ix] = (_TSCHAR *)option;
+                env[ix + 1] = NULL;
+
+                /* we now own the pointer, so NULL out the incoming pointer */
+                *poption=NULL;
+
+                _tenviron = env;
+            }
+            else {
+                /*
+                 * We are asked to remove an environment var that isn't there.
+                 * Free the option string and return success.
+                 */
+                _free_crt(option);
+
+                /* we now freed the pointer, so NULL out the incoming pointer */
+                *poption=NULL;
+
+                r

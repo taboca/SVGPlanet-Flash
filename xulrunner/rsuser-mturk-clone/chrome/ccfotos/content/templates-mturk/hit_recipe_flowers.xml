@@ -1,0 +1,55 @@
+              
+<!-- doc 
+
+ * hit created cannot be removed; 
+ * 	
+
+--> 
+
+<docCreate from="browserContentDocumentXYZ">
+	<generate for="image">
+		<object form="hit">
+		</object>
+	</generate>
+</docCreate>
+
+<account>
+	<property name="accessKeyId">
+		<value>0DGQMYR21FJAPQK95T02</value>
+	</property>
+	<property name="accessKey">
+		<value>Lc0KWlIp+Vi+zmBFbVNGRKrQLgMdEPds6JhL2o6j</value>
+	</property>
+</account>
+
+<hit>
+	<class name="hitType">
+        <property name="title">
+            <value>tagsubstringIdentifier - Label the image Title and Description</value>
+        </property>
+        <property name="description">
+            <value>Please provide a description for the given image - a short Title first and its Content. </value>
+        </property>
+        <property name="keywords">
+            <value>Description, label, translation, review, interpretation, subject, information details. </value>
+        </property>
+        <property name="rewardAmountInUSD">
+            <value>0.02</value>
+        </property>
+        <property name="durationToCompleteInSeconds">
+            <value>600</value>
+        </property>
+        <property name="autoApprovalDelayInSeconds">
+            <value>2000</value>
+        </property>
+        <property name="durationToLiveInSeconds">
+            <value>86400</value>
+        </property>
+        <property name="maxAssignmentCount">
+            <value>1</value>
+        </property>
+        <property name="questionFactory"> 
+            <ref attachment="hit_recipe_map_attachment_question.xml"/>
+        </property>
+	</class>
+</hit>

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+
+<overlay id="fsstasksOverlay"
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+  <script type="application/x-javascript" src="chrome://pinksearch/content/pinkSearchSidebar.js"/>
+
+  <!-- Sidebar Overlay -->
+
+  <menupopup id="viewSidebarMenu">
+		<menuitem observes="viewfssSidebar"/>
+  </menupopup>
+
+	<broadcasterset id="mainBroadcasterSet">
+		<broadcaster id="viewfssSidebar"
+			autoCheck="false"
+			label="PinkSearch Customize Sidebar"
+			type="checkbox" group="sidebar"
+			sidebarurl="chrome://pinksearch/content/pinkSearchSidebar.xul"
+			sidebartitle="Pink Search Configuration"
+			oncommand="toggleSidebar('viewfssSidebar');"/>
+	</broadcasterset>
+	
+   <!-- toolbar overlay -->
+
+   <toolbarpalette id="BrowserToolbarPalette">
+          <toolbarbutton id="fss-button" tooltiptext="fss" 
+                         observes="viewfssSidebar" 
+                         class="toolbarbutton-1" label="fss"/>
+    </toolbarpalette>
+  
+
+  
+</overlay>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Adobe Developer Center
+		</title>
+<!-- Changed by: , 21-Mar-2006 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="DeviceCentral">DeviceCentral</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WSCE6B5BE1-3351-4bd6-8C99-5B9B52D648D0.html" title="Adobe Design Center"><img src="images/prev.gif" alt="上一頁" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS82CC9E11-AEB7-4a41-9957-EFE5AAB467DE.html" title="客戶支援"><img src="images/next.gif" alt="下一頁" /></a></dd></dl></div><div class="hierarchy"><a href="WS2AFEDB74-72FE-46a7-9D5C-4187F34488E8.html">快速入門</a> /
+     <a href="WS299A5A30-FB1D-4ec2-8CFD-0DF64B515D87.html"><b>資源</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Adobe Developer Center
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+<!-- BEGIN CONTENT WRAPPER -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><p>Adobe Developer Center 為使用 Adobe 產品建立豐富 Internet 應用程式、網站、行動內容及其他專案的開發人員提供了各種範例、教學課程、文章及社群資源。 Developer Center 也包含了適用於為 Adobe 產品開發增效模組之開發人員的資源。 </p>
+<p>除了範例程式碼及教學課程外，您還可以�

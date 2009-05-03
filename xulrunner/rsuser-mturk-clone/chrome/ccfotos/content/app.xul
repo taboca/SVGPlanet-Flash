@@ -1,0 +1,188 @@
+<?xml version="1.0"?>
+
+   <?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?> 
+   <?xml-stylesheet href="chrome://ccfotos/content/app.css" type="text/css"?> 
+
+<window xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+      xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+      title="Taboca CCFotos INTERNAL RELEASE 0.3.4 / Contributor Forms Enabled "
+      windowtype="cominimo"
+      orient="vertical"
+
+      screenX="10" screenY="10" width="740" height="480"
+      onload="startup();" align="stretch"
+      id="ce-main" >	
+	
+ <script type="application/x-javascript" src="fotofu.js"/>
+ <script type="application/x-javascript" src="mturk.js"/>
+ <script type="application/x-javascript" src="blendxslt.js"/>
+ <script type="application/x-javascript" src="sha-1.js"/>
+
+  <vbox flex="1" > 
+
+<toolbox >
+
+<toolbar flex="1" style="background-color:#eecccc">
+
+
+  <label value="Pre Upload Public" /><textbox  style="background-color:yellow ! important"  label="tag" id="templatepath" value="ccfotos" />
+
+  <toolbarbutton label="Selecionar Imagens"  oncommand="fs_setFolder()" />
+
+  <label value="Fill numbers++ in field: " />
+  <textbox label="tag" id="templatefield_nm" value="title" />
+  <toolbarbutton label="Populate fields!"  oncommand="fs_runIdPopulate()" />
+
+</toolbar>
+
+
+<toolbar flex="1" style="background-color:lightyellow" >
+
+
+  <label value="Mturk Prepare Hits" /><textbox size="60" style="background-color:yellow ! important"  id="hitskey"  value="http://ccfotos.taboca.com/mturk/testmarcio/testing-mturk3/public.xml" />
+
+  <toolbarbutton label="Load Keys"  oncommand="mturk_loadHitKeys()" />
+
+  <label value="Base URL" />
+  <textbox size="60" style="background-color:yellow ! important"  id="baseUrlforKeys"  value="http://ccfotos.taboca.com/mturk/testmarcio/testing-mturk3/" />
+
+  <toolbarbutton label="Adjust base URL for keys"  oncommand="mturk_fixHitKeys()" />
+
+
+
+</toolbar>
+  <toolbar flex="1" style="background-color:lightgreen" >
+
+
+    <label value="Hits Recipe" />
+    <textbox size="30" id="hitstemplate"  value="templates-mturk/ccphotos-external.xml" />
+
+    <textbox label="Series prefix and title: " size="50" value="test1 - Label the image Title and Description"  id="hitsseriesprefix"/>
+    
+    <toolbarbutton label="Prepare Hits"  oncommand="mturk_prepareHits()" />
+
+    <toolbarbutton label="Upload Hits"  oncommand="mturk_pushHits()" />
+
+
+    <checkbox id="amazonConnectionEnabled" label="Enable Amazon Connection" />
+      
+
+  </toolbar>
+
+  <toolbar flex="1" style="background-color:cyan" >
+
+
+    <toolbarbutton label="Process Hits Stage information"  oncommand="mturk_loadHitJob()" />
+
+
+  </toolbar>
+
+
+  <toolbar flex="1">
+
+    <toolbarbutton label="Get Hits Search"  oncommand="turk_getHits()" />
+
+    <textbox id="labelTitle" size="20" value="imageset1" />
+    
+    <textbox id="templatePath2" size="20" value="ccphotos-mturk" />
+
+    <toolbarbutton label="Process Hits" oncommand="turk_processHits()" />
+
+    <checkbox id="useHitHash" label="Use Hit Hash values, disable is linear from the xml list" />
+
+
+  </toolbar>
+
+  <toolbar flex="1">
+
+
+    <toolbarbutton label="Assignment Populate" oncommand="mturk_populateFieldTitle()" />
+
+
+    <toolbarbutton label="Fix Capital and less dot in Title" oncommand="mturk_populateFixTitle()" />
+    <toolbarbutton label="Fix Capital Description" oncommand="mturk_populateFixDescription()" />
+
+  </toolbar>
+
+  
+  <toolbar flex="1" >
+
+    <toolbarbutton label="Login"  oncommand="document.getElementById('loginBrowser').setAttribute('src','login.html?'+Math.random())" />
+
+    <toolbarbutton label="Upload"      oncommand="mu_willPublishImages()" />
+
+    <label value="Type in the TAG here:" />
+    
+    <textbox label="tag" id="mturktagid" value="TYPE_IN_GROUP_TAG" />
+    
+  </toolbar>
+
+  <toolbar flex="1">
+    
+    <textbox label="tag" id="request" value="" />
+    
+    <toolbarbutton label="Dispose hits selected" oncommand="mturk_disposeHitsInList()" />
+
+  </toolbar>
+  
+</toolbox>
+    
+<tabbox flex="1" id="tabbox" style="margin:.5em;">
+
+  <tabs orient="horizontal">
+      <tab id="browserTab3"  label="Ajuda / Help" oncommand="fs_loadHelp()" accesskey=""/>
+      <tab id="browserTab"   label="Area de Trabalho" accesskey="" oncommand="document.getElementById('previewToolbar').setAttribute('hidden','false')"/>
+      <tab id="browserTab2"  label="Area de Login" oncommand="document.getElementById('loginBrowser').setAttribute('src','login.html');" accesskey=""/>
+      <tab id="browserTab4"  label="Enviando" />
+      <tab id="browserTab5"  label="Keys Load" />
+      <tab id="browserTab6"  label="Hits Load" />
+    <tab id="browserTab7"  label="Hits Upload" />
+    <tab id="browserTab8"  label="Hits Try" />
+    <tab id="browserTab9"  label="Hits Stage" />
+    <tab id="browserTab10"  label="Hit and Images Loaded" />
+    <tab id="turkretrieve1"   label="Amazon Dealer" accesskey="a"/>
+    <tab id="turkretrieve2"   label="Stage Upload" accesskey="b"/>
+  </tabs>
+    
+    <tabpanels id="tabpanels" flex="1">
+
+	<browser id="helpBrowser"  src="blank.html" />
+
+	<browser id="previewBrowser"  src="blank.html" />
+
+	<browser id="loginBrowser"  src="login.html" />
+
+	<vbox>
+		<toolbar >
+		  <label value="Tag:" /><textbox label="tag" id="tagid" value="_preencher_aqui_" />
+		  <toolbarbutton label="Envia"      oncommand="fs_willPublishImages()" />
+		</toolbar>
+		<vbox flex="1" />
+	</vbox>
+
+	<browser id="keysBrowser"  src="about:blank" />
+  <browser id="hitsBrowser"        src="textareadump.html" />
+  <browser id="hitsUploadBrowser"  src="textareadump.html" />
+  <browser id="hitsTry"  src="textareadump.html" />
+      <browser id="hitsStageBrowser"  src="textareadump.html" />
+      <browser id="hitAndImages"  src="textareadump.html" />
+
+      <browser id="previewBrowserGetHits"  src="blank.html" />
+
+      <browser id="stageBrowser"  src="blank.html" />
+
+    </tabpanels>
+	<toolbox id="previewToolbar" hidden="true">
+	<toolbar>
+	  <label value="Autoria: " />
+    <toolbarbutton label="Duplicate Field"  oncommand="fs_editCloneAll()" />
+    <toolbarbutton label="Duplicate Field in Turked"  oncommand="mu_editCloneAll()" />
+  </toolbar>
+	</toolbox>
+
+
+</tabbox>
+
+</vbox>
+</window>

@@ -1,0 +1,197 @@
+
+
+/* this ALWAYS GENERATED file contains the definitions for the interfaces */
+
+
+ /* File created by MIDL compiler version 6.00.0366 */
+/* Compiler settings for fusion.idl:
+    Oicf, W1, Zp8, env=Win32 (32b run)
+    protocol : dce , ms_ext, c_ext, robust
+    error checks: allocation ref bounds_check enum stub_data 
+    VC __declspec() decoration level: 
+         __declspec(uuid()), __declspec(selectany), __declspec(novtable)
+         DECLSPEC_UUID(), MIDL_INTERFACE()
+*/
+//@@MIDL_FILE_HEADING(  )
+
+#pragma warning( disable: 4049 )  /* more than 64k source lines */
+
+
+/* verify that the <rpcndr.h> version is high enough to compile this file*/
+#ifndef __REQUIRED_RPCNDR_H_VERSION__
+#define __REQUIRED_RPCNDR_H_VERSION__ 475
+#endif
+
+#include "rpc.h"
+#include "rpcndr.h"
+
+#ifndef __RPCNDR_H_VERSION__
+#error this stub requires an updated version of <rpcndr.h>
+#endif // __RPCNDR_H_VERSION__
+
+#ifndef COM_NO_WINDOWS_H
+#include "windows.h"
+#include "ole2.h"
+#endif /*COM_NO_WINDOWS_H*/
+
+#ifndef __fusion_h__
+#define __fusion_h__
+
+#if defined(_MSC_VER) && (_MSC_VER >= 1020)
+#pragma once
+#endif
+
+/* Forward Declarations */ 
+
+#ifndef __IAssemblyCache_FWD_DEFINED__
+#define __IAssemblyCache_FWD_DEFINED__
+typedef interface IAssemblyCache IAssemblyCache;
+#endif 	/* __IAssemblyCache_FWD_DEFINED__ */
+
+
+#ifndef __IAssemblyCacheItem_FWD_DEFINED__
+#define __IAssemblyCacheItem_FWD_DEFINED__
+typedef interface IAssemblyCacheItem IAssemblyCacheItem;
+#endif 	/* __IAssemblyCacheItem_FWD_DEFINED__ */
+
+
+#ifndef __IAssemblyName_FWD_DEFINED__
+#define __IAssemblyName_FWD_DEFINED__
+typedef interface IAssemblyName IAssemblyName;
+#endif 	/* __IAssemblyName_FWD_DEFINED__ */
+
+
+#ifndef __IAssemblyEnum_FWD_DEFINED__
+#define __IAssemblyEnum_FWD_DEFINED__
+typedef interface IAssemblyEnum IAssemblyEnum;
+#endif 	/* __IAssemblyEnum_FWD_DEFINED__ */
+
+
+#ifndef __IInstallReferenceItem_FWD_DEFINED__
+#define __IInstallReferenceItem_FWD_DEFINED__
+typedef interface IInstallReferenceItem IInstallReferenceItem;
+#endif 	/* __IInstallReferenceItem_FWD_DEFINED__ */
+
+
+#ifndef __IInstallReferenceEnum_FWD_DEFINED__
+#define __IInstallReferenceEnum_FWD_DEFINED__
+typedef interface IInstallReferenceEnum IInstallReferenceEnum;
+#endif 	/* __IInstallReferenceEnum_FWD_DEFINED__ */
+
+
+/* header files for imported files */
+#include "objidl.h"
+
+#ifdef __cplusplus
+extern "C"{
+#endif 
+
+void * __RPC_USER MIDL_user_allocate(size_t);
+void __RPC_USER MIDL_user_free( void * ); 
+
+/* interface __MIDL_itf_fusion_0000 */
+/* [local] */ 
+
+
+#ifdef _MSC_VER
+#pragma comment(lib,"uuid.lib")
+#endif
+
+//---------------------------------------------------------------------------=
+// Fusion Interfaces.
+
+#ifdef _MSC_VER
+#pragma once
+#endif
+
+
+
+
+typedef /* [public] */ 
+enum __MIDL___MIDL_itf_fusion_0000_0001
+    {	ASM_CACHE_ZAP	= 0x1,
+	ASM_CACHE_GAC	= 0x2,
+	ASM_CACHE_DOWNLOAD	= 0x4,
+	ASM_CACHE_ROOT	= 0x8
+    } 	ASM_CACHE_FLAGS;
+
+typedef /* [public] */ 
+enum __MIDL___MIDL_itf_fusion_0000_0002
+    {	peNone	= 0,
+	peMSIL	= 0x1,
+	peI386	= 0x2,
+	peIA64	= 0x3,
+	peAMD64	= 0x4,
+	peInvalid	= 0xffffffff
+    } 	PEKIND;
+
+
+
+extern RPC_IF_HANDLE __MIDL_itf_fusion_0000_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_fusion_0000_v0_0_s_ifspec;
+
+#ifndef __IAssemblyCache_INTERFACE_DEFINED__
+#define __IAssemblyCache_INTERFACE_DEFINED__
+
+/* interface IAssemblyCache */
+/* [unique][uuid][object][local] */ 
+
+// {8cedc215-ac4b-488b-93c0-a50a49cb2fb8}
+EXTERN_GUID(FUSION_REFCOUNT_UNINSTALL_SUBKEY_GUID, 0x8cedc215, 0xac4b, 0x488b, 0x93, 0xc0, 0xa5, 0x0a, 0x49, 0xcb, 0x2f, 0xb8);
+
+// {b02f9d65-fb77-4f7a-afa5-b391309f11c9}
+EXTERN_GUID(FUSION_REFCOUNT_FILEPATH_GUID, 0xb02f9d65, 0xfb77, 0x4f7a, 0xaf, 0xa5, 0xb3, 0x91, 0x30, 0x9f, 0x11, 0xc9);
+
+// {2ec93463-b0c3-45e1-8364-327e96aea856}
+EXTERN_GUID(FUSION_REFCOUNT_OPAQUE_STRING_GUID, 0x2ec93463, 0xb0c3, 0x45e1, 0x83, 0x64, 0x32, 0x7e, 0x96, 0xae, 0xa8, 0x56);
+ // {25df0fc1-7f97-4070-add7-4b13bbfd7cb8} // this GUID cannot be used for installing into GAC.
+EXTERN_GUID(FUSION_REFCOUNT_MSI_GUID,  0x25df0fc1, 0x7f97, 0x4070, 0xad, 0xd7, 0x4b, 0x13, 0xbb, 0xfd, 0x7c, 0xb8); 
+ // {d16d444c-56d8-11d5-882d-0080c847b195}
+EXTERN_GUID(FUSION_REFCOUNT_OSINSTALL_GUID, 0xd16d444c, 0x56d8, 0x11d5, 0x88, 0x2d, 0x00, 0x80, 0xc8, 0x47, 0xb1, 0x95); 
+typedef struct _FUSION_INSTALL_REFERENCE_
+    {
+    DWORD cbSize;
+    DWORD dwFlags;
+    GUID guidScheme;
+    LPCWSTR szIdentifier;
+    LPCWSTR szNonCannonicalData;
+    } 	FUSION_INSTALL_REFERENCE;
+
+typedef struct _FUSION_INSTALL_REFERENCE_ *LPFUSION_INSTALL_REFERENCE;
+
+typedef const FUSION_INSTALL_REFERENCE *LPCFUSION_INSTALL_REFERENCE;
+
+typedef struct _ASSEMBLY_INFO
+    {
+    ULONG cbAssemblyInfo;
+    DWORD dwAssemblyFlags;
+    ULARGE_INTEGER uliAssemblySizeInKB;
+    LPWSTR pszCurrentAssemblyPathBuf;
+    ULONG cchBuf;
+    } 	ASSEMBLY_INFO;
+
+#define IASSEMBLYCACHE_INSTALL_FLAG_REFRESH       (0x00000001)
+#define IASSEMBLYCACHE_INSTALL_FLAG_FORCE_REFRESH (0x00000002)
+#define IASSEMBLYCACHE_UNINSTALL_DISPOSITION_UNINSTALLED (1)
+#define IASSEMBLYCACHE_UNINSTALL_DISPOSITION_STILL_IN_USE (2)
+#define IASSEMBLYCACHE_UNINSTALL_DISPOSITION_ALREADY_UNINSTALLED (3)
+#define IASSEMBLYCACHE_UNINSTALL_DISPOSITION_DELETE_PENDING (4)
+#define IASSEMBLYCACHE_UNINSTALL_DISPOSITION_HAS_INSTALL_REFERENCES (5)
+#define IASSEMBLYCACHE_UNINSTALL_DISPOSITION_REFERENCE_NOT_FOUND (6)
+#define QUERYASMINFO_FLAG_VALIDATE        (0x00000001)
+#define QUERYASMINFO_FLAG_GETSIZE         (0x00000002)
+#define ASSEMBLYINFO_FLAG_INSTALLED       (0x00000001)
+#define ASSEMBLYINFO_FLAG_PAYLOADRESIDENT (0x00000002)
+
+EXTERN_C const IID IID_IAssemblyCache;
+
+#if defined(__cplusplus) && !defined(CINTERFACE)
+    
+    MIDL_INTERFACE("e707dcde-d1cd-11d2-bab9-00c04f8eceae")
+    IAssemblyCache : public IUnknown
+    {
+    public:
+        virtual HRESULT STDMETHODCALLTYPE UninstallAssembly( 
+            /* [in] */ DWORD dwFlags,
+            /* [in] */ LPCWSTR pszAssemblyName,
+            /* [in] */ LPCFUSION_INSTALL_REFER

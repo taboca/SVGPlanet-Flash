@@ -1,0 +1,123 @@
+/* [in] */ IHTMLViewFilterSite __RPC_FAR *pSink);
+
+
+void __RPC_STUB IHTMLViewFilter_SetSite_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+HRESULT STDMETHODCALLTYPE IHTMLViewFilter_GetSite_Proxy( 
+    IHTMLViewFilter __RPC_FAR * This,
+    /* [out] */ IHTMLViewFilterSite __RPC_FAR *__RPC_FAR *ppSink);
+
+
+void __RPC_STUB IHTMLViewFilter_GetSite_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+HRESULT STDMETHODCALLTYPE IHTMLViewFilter_SetPosition_Proxy( 
+    IHTMLViewFilter __RPC_FAR * This,
+    LPCRECT prc);
+
+
+void __RPC_STUB IHTMLViewFilter_SetPosition_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+HRESULT STDMETHODCALLTYPE IHTMLViewFilter_Draw_Proxy( 
+    IHTMLViewFilter __RPC_FAR * This,
+    /* [in] */ HDC hdc,
+    /* [in] */ LPCRECT prcBounds);
+
+
+void __RPC_STUB IHTMLViewFilter_Draw_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+HRESULT STDMETHODCALLTYPE IHTMLViewFilter_GetStatusBits_Proxy( 
+    IHTMLViewFilter __RPC_FAR * This,
+    /* [out] */ DWORD __RPC_FAR *pdwFlags);
+
+
+void __RPC_STUB IHTMLViewFilter_GetStatusBits_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+
+#endif 	/* __IHTMLViewFilter_INTERFACE_DEFINED__ */
+
+
+#ifndef __IHTMLViewFilterSite_INTERFACE_DEFINED__
+#define __IHTMLViewFilterSite_INTERFACE_DEFINED__
+
+/* interface IHTMLViewFilterSite */
+/* [local][unique][uuid][object] */ 
+
+
+EXTERN_C const IID IID_IHTMLViewFilterSite;
+
+#if defined(__cplusplus) && !defined(CINTERFACE)
+    
+    MIDL_INTERFACE("3050f2f4-98b5-11cf-bb82-00aa00bdce0b")
+    IHTMLViewFilterSite : public IUnknown
+    {
+    public:
+        virtual HRESULT STDMETHODCALLTYPE GetDC( 
+            /* [in] */ LPCRECT prc,
+            /* [in] */ DWORD dwFlags,
+            /* [out] */ HDC __RPC_FAR *phdc) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE ReleaseDC( 
+            /* [in] */ HDC hdc) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE InvalidateRect( 
+            /* [in] */ LPCRECT prc,
+            /* [in] */ BOOL fErase) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE InvalidateRgn( 
+            /* [in] */ HRGN hrgn,
+            /* [in] */ BOOL fErase) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE OnStatusBitsChange( 
+            /* [in] */ DWORD dwFlags) = 0;
+        
+    };
+    
+#else 	/* C style interface */
+
+    typedef struct IHTMLViewFilterSiteVtbl
+    {
+        BEGIN_INTERFACE
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *QueryInterface )( 
+            IHTMLViewFilterSite __RPC_FAR * This,
+            /* [in] */ REFIID riid,
+            /* [iid_is][out] */ void __RPC_FAR *__RPC_FAR *ppvObject);
+        
+        ULONG ( STDMETHODCALLTYPE __RPC_FAR *AddRef )( 
+            IHTMLViewFilterSite __RPC_FAR * This);
+        
+        ULONG ( STDMETHODCALLTYPE __RPC_FAR *Release )( 
+            IHTMLViewFilterSite __RPC_FAR * This);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetDC )( 
+            IHTMLViewFilterSite __RPC_FAR * This,
+            /* [in] */ LPCRECT prc,
+            /* [in] */ DWORD dwFlags,
+            /* [out] */ HDC __RPC_FAR *phdc);
+        
+        HRESULT ( STDMETHODCALL

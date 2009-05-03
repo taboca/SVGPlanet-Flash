@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+
+   <?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?> 
+   <?xml-stylesheet href="chrome://ccfotos/content/app.css" type="text/css"?> 
+
+<window xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+      xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+      title="Taboca CCFotos INTERNAL RELEASE 0.3.4 / Contributor Forms Enabled "
+      windowtype="cominimo"
+      orient="vertical"
+
+      screenX="10" screenY="10" width="640" height="480"
+      onload="startup();" align="stretch"
+      id="ce-main" >	
+	
+ <script type="application/x-javascript" src="fotofu.js"/>
+ <script type="application/x-javascript" src="mturk.js"/>        
+ <script type="application/x-javascript" src="blendxslt.js"/>        
+
+<vbox flex="1" > 
+
+<toolbox >
+
+<toolbar flex="1" style="background-color:#eecccc">
+
+
+  <label value="Pre Upload Public" /><textbox  style="background-color:yellow ! important"  label="tag" id="templatepath" value="ccfotos" />
+
+  <toolbarbutton label="Selecionar Imagens"  oncommand="fs_setFolder()" />
+
+</toolbar>
+
+
+<toolbar flex="1" style="background-color:lightyellow" >
+
+
+  <label value="Mturk Prepare Hits" /><textbox size="30" style="background-color:yellow ! important"  id="hitskey"  value="data/data-keylist.xml" />
+
+  <toolbarbutton label="Load Keys"  oncommand="mturk_loadHitKeys()" />
+
+  <label value="Hits Recipe" /><textbox size="20" id="hitstemplate"  value="template-mturk/template_hits.xsl" />
+
+  <toolbarbutton label="Prepare Hits"  oncommand="mturk_prepareHits()" />
+
+  <toolbarbutton label="Upload Hits"  oncommand="mturk_checkHits()" />
+
+
+</toolbar>
+
+<toolbar flex="1" style="background-color:lightgreen" >
+
+
+  <label value="App and Hits Mount" /><textbox size="60" style="background-color:yellow ! important"  id=""  value="data/data-keylist.xml" />
+
+  <toolbarbutton label="Load References"  oncommand="mturk_loadHits()" />
+
+</toolbar>
+
+
+</toolbox>
+    
+<tabbox flex="1" id="tabbox" style="margin:.5em;">
+
+  <tabs orient="horizontal">
+      <tab id="browserTab3"  label="Ajuda / Help" oncommand="fs_loadHelp()" accesskey=""/>
+      <tab id="browserTab"   label="Area de Trabalho" accesskey="" oncommand="document.getElementById('previewToolbar').setAttribute('hidden','false')"/>
+      <tab id="browserTab2"  label="Area de Login" oncommand="document.getElementById('loginBrowser').setAttribute('src','login.html');" accesskey=""/>
+      <tab id="browserTab4"  label="Enviando" />
+      <tab id="browserTab5" style="background-color:yellow" label="Keys Load" />
+      <tab id="browserTab5" style="background-color:yellow" label="Hits Load" />
+    </tabs>
+    
+    <tabpanels id="tabpanels" flex="1">
+
+	<browser id="helpBrowser"  src="blank.html" />
+
+	<browser id="previewBrowser"  src="blank.html" />
+
+	<browser id="loginBrowser"  src="login.html" />
+
+	<vbox>
+		<toolbar >
+		  <label value="Tag:" /><textbox label="tag" id="tagid" value="_preencher_aqui_" />
+		  <toolbarbutton label="Envia"      oncommand="fs_willPublishImages()" />
+		</toolbar>
+		<vbox flex="1" />
+	</vbox>
+
+	<browser id="keysBrowser"  src="about:blank" />
+	<browser id="hitsBrowser"  src="blank.html" />
+
+
+
+   </tabpanels>
+	<toolbox id="previewToolbar" hidden="true">
+	<toolbar>
+	  <label value="Autoria: " />
+	  <toolbarbutton label="Duplicate Field"  oncommand="fs_editCloneAll()" />
+	</toolbar>
+	</toolbox>
+
+
+</tabbox>
+
+</vbox>
+</window>

@@ -1,0 +1,57 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Kayıt Başarısız</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" type="text/css" href="./../default.css"></link>
+	<script language="javascript" src="./../domutils.js"></script>
+    <script language="javascript" src="./../wizardcore.js"></script>
+</head>
+
+<body background="./../background.png">
+
+<div id="registration_unsuccessful_1st_launch_main-title" class="main-title">
+  Kayıt Başarısız
+</div>
+
+<div id="registration_unsuccessful_1st_launch_sub-title" class="sub-title">
+  <div class="sub-title-with-error-gray-bg">
+	  <table width="499" cellpadding="0" cellspacing="3">
+		<tr>
+			<td width="33">
+				<img src="./../error_icon.png" width="22" height="22">
+			</td>
+			<td width="441" class="sub-title-with-error">
+				Internet üzerinden bilgi gönderilirken sorunla karşılaşıldı.
+			</td>
+		</tr>
+  </table>
+  </div>	
+</div>
+
+<div id="registration_unsuccessful_1st_launch_content" class="content">
+  <BR>
+  <form name="registration_unsuccessful_options" method="post" action="">
+	<fieldset style="border:0;"> <BR>Lütfen aşağıdaki seçeneklerden birini belirleyin:
+	<table>
+		<TR><TD class="table-content-right">
+		<input name="radio_select" type="radio" id="submit_again" tabindex="1" value="çevrimiçi" checked="true">
+		<label for="submit_again">Çevrimiçi kaydolmayı yeniden göndermeyi dene</label>
+		</TD></TR>
+		<TR><TD class="table-content-right">
+		<input name="radio_select" type="radio" id="register_later" tabindex="2" value="daha sonra">
+		<label for="register_later">Daha Sonra Kaydol (Kayıt formunu yeniden doldurmanız gerekecektir)</label>
+		</TD></TR>
+		<TR><TD class="table-content-right">
+		<input name="radio_select" type="radio" id="never_register" tabindex="3" value="hiçbir zaman">
+		<label for="never_register">Hiçbir zaman kaydolma</label>
+		</td></tr>	
+	</table>	
+	</fieldset>
+  </form>
+</div>
+
+<div id="registration_unsuccessful_1st_launch_rightbutton" class="rightbutton2">
+ 	<form name="registration_unsuccessful_next_form">
+   		<div class="show-button" id="registration_unsuccessful_resubmit">
+		<input name="registration_unsuccessful_resubmit" type="button" id="registration_unsuccessful_resubmit" tabindex="4" accesskey="a" title="Yeniden Gönder" value=" Yeniden Gönder " onClick=

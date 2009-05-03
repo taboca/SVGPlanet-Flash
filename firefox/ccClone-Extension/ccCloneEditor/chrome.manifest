@@ -1,0 +1,4 @@
+content pinksearch chrome/pinksearch/content/
+skin	pinksearch classic/1.0 chrome/pinksearch/skin/classic/
+overlay	chrome://browser/content/browser.xul	chrome://pinksearch/content/overlay.xul
+overlay	chrome://browser/content/browser.xul	chrome://pinksearch/content/overlay-sidebar.xul

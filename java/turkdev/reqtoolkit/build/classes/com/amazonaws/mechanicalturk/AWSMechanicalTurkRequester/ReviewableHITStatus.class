@@ -1,0 +1,57 @@
+gt;surname().latin1() &lt;&lt; ", " &lt;&lt;
+                employee-&gt;forename().latin1() &lt;&lt; " earns " &lt;&lt;
+                employee-&gt;salary() &lt;&lt; endl;
+    }
+    </pre>
+ 
+<p> The output is
+<pre>
+    Doe, John earns 50000
+    Williams, Jane earns 80000
+    Jones, Tom earns 60000
+    </pre>
+ 
+<p> Using a list iterator is a more robust way of traversing the list
+than using the <a href="qptrlist.html">QPtrList</a> member functions <a href="qptrlist.html#first">first</a>(), <a href="qptrlist.html#next">next</a>(), <a href="qptrlist.html#current">current</a>(), etc., as many iterators can
+traverse the same list independently.
+<p> An iterator has its own current list item and can get the next and
+previous list items. It doesn't modify the list in any way.
+<p> When an item is removed from the list, all iterators that point to
+that item are updated to point to <a href="qptrlist.html#current">QPtrList::current</a>() instead to
+avoid dangling references.
+<p> <p>See also <a href="qptrlist.html">QPtrList</a>, <a href="collection.html">Collection Classes</a>, and <a href="tools.html">Non-GUI Classes</a>.
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class=fn><a name="QPtrListIterator"></a>QPtrListIterator::QPtrListIterator ( const&nbsp;<a href="qptrlist.html">QPtrList</a>&lt;type&gt;&nbsp;&amp;&nbsp;list )
+</h3>
+
+<p> Constructs an iterator for <em>list</em>. The current iterator item is
+set to point on the first item in the <em>list</em>.
+
+<h3 class=fn><a name="~QPtrListIterator"></a>QPtrListIterator::~QPtrListIterator ()
+</h3>
+
+<p> Destroys the iterator.
+
+<h3 class=fn>bool <a name="atFirst"></a>QPtrListIterator::atFirst () const
+</h3>
+
+<p> Returns TRUE if the current iterator item is the first list item;
+otherwise returns FALSE.
+<p> <p>See also <a href="#toFirst">toFirst</a>() and <a href="#atLast">atLast</a>().
+
+<h3 class=fn>bool <a name="atLast"></a>QPtrListIterator::atLast () const
+</h3>
+
+<p> Returns TRUE if the current iterator item is the last list item;
+otherwise returns FALSE.
+<p> <p>See also <a href="#toLast">toLast</a>() and <a href="#atFirst">atFirst</a>().
+
+<h3 class=fn>uint <a name="count"></a>QPtrListIterator::count () const
+</h3>
+
+<p> Returns the number of items in the list this iterator operates on.
+<p> <p>See also <a href="#isEmpty">isEmpty</a>().
+
+<p>Example: <a href="customlayout-example.html#x1218">customlayout/card.cpp</a>.
+<h3 class=fn>type * <a name="current"></a>QPtrListIterator::current (

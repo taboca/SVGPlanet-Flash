@@ -1,0 +1,45 @@
+:
+        print "ok (%s)" % ac
+    print
+
+def _test():
+    global debug
+    rp = RobotFileParser()
+    debug = 1
+
+    # robots.txt that exists, gotten to by redirection
+    rp.set_url('http://www.musi-cal.com/robots.txt')
+    rp.read()
+
+    # test for re.escape
+    _check(rp.can_fetch('*', 'http://www.musi-cal.com/'), 1)
+    # this should match the first rule, which is a disallow
+    _check(rp.can_fetch('', 'http://www.musi-cal.com/'), 0)
+    # various cherry pickers
+    _check(rp.can_fetch('CherryPickerSE',
+                       'http://www.musi-cal.com/cgi-bin/event-search'
+                       '?city=San+Francisco'), 0)
+    _check(rp.can_fetch('CherryPickerSE/1.0',
+                       'http://www.musi-cal.com/cgi-bin/event-search'
+                       '?city=San+Francisco'), 0)
+    _check(rp.can_fetch('CherryPickerSE/1.5',
+                       'http://www.musi-cal.com/cgi-bin/event-search'
+                       '?city=San+Francisco'), 0)
+    # case sensitivity
+    _check(rp.can_fetch('ExtractorPro', 'http://www.musi-cal.com/blubba'), 0)
+    _check(rp.can_fetch('extractorpro', 'http://www.musi-cal.com/blubba'), 0)
+    # substring test
+    _check(rp.can_fetch('toolpak/1.1', 'http://www.musi-cal.com/blubba'), 0)
+    # tests for catch-all * agent
+    _check(rp.can_fetch('spam', 'http://www.musi-cal.com/search'), 0)
+    _check(rp.can_fetch('spam', 'http://www.musi-cal.com/Musician/me'), 1)
+    _check(rp.can_fetch('spam', 'http://www.musi-cal.com/'), 1)
+    _check(rp.can_fetch('spam', 'http://www.musi-cal.com/'), 1)
+
+    # robots.txt that does not exist
+    rp.set_url('http://www.lycos.com/robots.txt')
+    rp.read()
+    _check(rp.can_fetch('Mozilla', 'http://www.lycos.com/search'), 1)
+
+if __name__ == '__main__':
+    _test()

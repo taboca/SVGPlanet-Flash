@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fd>
+  <ap nm="panela-en-gloria">
+	<ev id="0" nm="newImage">
+		<ar nm="author" vl="Sergio"  wiz="ui:textfield" help="author" />
+		<ar nm="title" vl="Titulo com espacos"  wiz="ui:textfield" help="title" />
+		<fl nm="photo" vl="src"  wiz="keyfile:" />
+		<ar nm="from" vl="Ribeirao Preto"  wiz="ui:textfield"  help="Location From" />
+		<ar nm="license" vl="cc"  wiz="ui:textfield"  help="License" />
+		<ar nm="keywords" vl="pao manteiga acucar"  wiz="ui:textfield"  help="Keywords" />
+		<ar nm="ingredients" vl="Pao Manteiga Acucar"  wiz="ui:textfield"  help="Ingredients" />
+		<ar nm="description" vl="Descricao da receita" wiz="ui:textfield"  help="Description" />
+		<ar nm="tag" vl="pao"  wiz="ui:hiddenfield" fill="tagid" />
+	</ev>
+  </ap>
+</fd>
+		

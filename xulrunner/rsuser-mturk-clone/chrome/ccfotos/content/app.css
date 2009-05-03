@@ -1,0 +1,12 @@
+toolbarbutton {
+ margin:2px;
+ border:1px solid black;
+ background-color:white;
+}
+
+toolbox, window {
+
+ background-color:#ccccdd;
+
+}
+
